@@ -1,0 +1,203 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/pages/blog
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - { name: templateKey, widget: hidden, default: 'blog-post' }
+      - { label: 'Title', name: title, widget: string }
+      - { label: 'Published Date', name: date, widget: datetime }
+      - { label: Description, name: description, widget: text }
+      - { label: 'Featured Post', name: featured, widget: boolean }
+      - { label: 'Featured Image', name: featured, widget: image }
+      - { label: Body, name: body, widget: markdown }
+      - { label: Tags, name: tags, widget: list }
+
+  - name: pages
+    label: Pages
+    files:
+      - file: src/pages/index.md
+        label: 'Landing Page'
+        name: 'index'
+        fields:
+          - { label: templateKey, widget: hidden, default: 'index-page' }
+          - { label: Title, name: title, widget: string }
+          - { label: 'Hero Image', name: heroImage, widget: image }
+          - {
+              label: 'Main Pitch',
+              name: pitch,
+              widget: object,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Description, name: description, widget: string },
+                ],
+            }
+          - { label: Body, name: body, widget: markdown }
+          - {
+              label: Mosaic,
+              name: mosaic,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+      - file: src/pages/about/index.md
+        label: 'About Page'
+        name: 'about'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: 'Sub Title', name: subTitle, widget: string }
+          - { label: Body, name: body, widget: markdown }
+          - {
+              label: Mosaic,
+              name: mosaic,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+      - file: src/pages/about/production.md
+        label: 'Production'
+        name: 'production'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: 'Sub Title', name: subTitle, widget: string }
+          - { label: Body, name: body, widget: markdown }
+          - {
+              label: Mosaic,
+              name: mosaic,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+      - file: src/pages/about/experience.md
+        label: 'Experience'
+        name: 'experience'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: 'Sub Title', name: subTitle, widget: string }
+          - { label: Body, name: body, widget: markdown }
+          - {
+              label: Mosaic,
+              name: mosaic,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+      - file: src/pages/about/workshops/index.md
+        label: 'Workshops'
+        name: 'workshops'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: 'Sub Title', name: subTitle, widget: string }
+          - {
+              label: Benefits,
+              name: benefits,
+              widget: list,
+              fields: [{ label: Benefit, name: benefit, widget: string }],
+            }
+          - { label: Body, name: body, widget: markdown }
+          - {
+              label: Mosaic,
+              name: mosaic,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+          - { label: Rules, name: rules, widget: markdown }
+          - {
+              label: 'Cancellation Policy',
+              name: cancellationPolicy,
+              widget: markdown,
+            }
+  - name: workshops
+    label: Workshops
+    label_singular: Workshop
+    folder: src/pages/about/workshops
+    create: true
+    fields:
+      - { name: templateKey, widget: hidden, default: workshop }
+      - { label: Title, name: title, widget: string }
+      - { label: From, name: from, widget: datetime }
+      - { label: To, name: to, widget: datetime }
+      - { label: Location, name: location, widget: string }
+      - { label: Price, name: price, widget: number }
+      - { label: Level, name: level, widget: string }
+      - { label: prerequisite, name: Prerequisite, widget: string }
+      - { label: Details, name: body, widget: markdown }
+  - name: categories
+    label: Categories
+    label_singular: Cateogry
+    folder: src/pages/categories
+    create: true
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Rank, name: rank, widget: number, required: false }
+      - { label: Image, name: image, widget: image }
+      - { label: Icon, name: icon, widget: string, required: false }
+      - {
+          label: Description,
+          name: description,
+          widget: markdown,
+          required: false,
+        }
+
+  - name: products
+    label: Products
+    label_singular: Product
+    folder: src/pages/products
+    create: true
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Rank, name: rank, widget: number, required: false }
+      - { label: Summary, name: summary, widget: markdown }
+      - { label: Schedule, name: schedule, widget: string, required: false }
+      - { label: Price, name: price, widget: number }
+      - {
+          label: Images,
+          name: images,
+          widget: list,
+          fields:
+            [
+              { label: Image, name: image, widget: image },
+              {
+                label: Description,
+                name: description,
+                widget: string,
+                required: false,
+              },
+            ],
+        }
+      - {
+          label: Attributes,
+          name: attributes,
+          widget: list,
+          fields:
+            [
+              { label: Key, name: key, widget: string },
+              { label: Value, name: value, widget: string },
+              { label: Icon, name: icon, widget: string, required: false },
+            ],
+        }
