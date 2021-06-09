@@ -1,7 +1,9 @@
 backend:
-  name: git-gateway
-  branch: master
+  name: github
+  repo: credli/sourdough
+  branch: main
 
+local_backend: true
 media_folder: static/img
 public_folder: /img
 
@@ -16,8 +18,8 @@ collections:
       - { label: 'Title', name: title, widget: string }
       - { label: 'Published Date', name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
-      - { label: 'Featured Post', name: featured, widget: boolean }
-      - { label: 'Featured Image', name: featured, widget: image }
+      - { label: 'Featured Post', name: featuredPost, widget: boolean }
+      - { label: 'Featured Image', name: featuredImage, widget: image }
       - { label: Body, name: body, widget: markdown }
       - { label: Tags, name: tags, widget: list }
 
@@ -26,9 +28,9 @@ collections:
     files:
       - file: src/pages/index.md
         label: 'Landing Page'
-        name: 'index'
+        name: 'indexPage'
         fields:
-          - { label: templateKey, widget: hidden, default: 'index-page' }
+          - { name: templateKey, widget: hidden, default: index-page }
           - { label: Title, name: title, widget: string }
           - { label: 'Hero Image', name: heroImage, widget: image }
           - {
@@ -54,8 +56,9 @@ collections:
             }
       - file: src/pages/about/index.md
         label: 'About Page'
-        name: 'about'
+        name: 'aboutPage'
         fields:
+          - { name: templateKey, widget: hidden, default: about-page }
           - { label: Title, name: title, widget: string }
           - { label: 'Sub Title', name: subTitle, widget: string }
           - { label: Body, name: body, widget: markdown }
@@ -71,8 +74,9 @@ collections:
             }
       - file: src/pages/about/production.md
         label: 'Production'
-        name: 'production'
+        name: 'productionPage'
         fields:
+          - { name: templateKey, widget: hidden, default: production-page }
           - { label: Title, name: title, widget: string }
           - { label: 'Sub Title', name: subTitle, widget: string }
           - { label: Body, name: body, widget: markdown }
@@ -88,8 +92,9 @@ collections:
             }
       - file: src/pages/about/experience.md
         label: 'Experience'
-        name: 'experience'
+        name: 'experiencePage'
         fields:
+          - { name: templateKey, widget: hidden, default: experience-page }
           - { label: Title, name: title, widget: string }
           - { label: 'Sub Title', name: subTitle, widget: string }
           - { label: Body, name: body, widget: markdown }
@@ -103,17 +108,22 @@ collections:
                   { label: Image, name: image, widget: image },
                 ],
             }
-      - file: src/pages/about/workshops/index.md
+      - file: src/pages/workshops/index.md
         label: 'Workshops'
-        name: 'workshops'
+        name: 'workshopsPage'
         fields:
+          - { name: templateKey, widget: hidden, default: workshops-page }
           - { label: Title, name: title, widget: string }
           - { label: 'Sub Title', name: subTitle, widget: string }
           - {
               label: Benefits,
               name: benefits,
               widget: list,
-              fields: [{ label: Benefit, name: benefit, widget: string }],
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Benefit, name: benefit, widget: string },
+                ],
             }
           - { label: Body, name: body, widget: markdown }
           - {
@@ -132,13 +142,28 @@ collections:
               name: cancellationPolicy,
               widget: markdown,
             }
+      - file: src/pages/products/index.md
+        label: 'Products Page'
+        name: 'productsPage'
+        fields:
+          - { name: templateKey, widget: hidden, default: products-page }
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }
+      - file: src/pages/categories/index.md
+        label: 'Categories Page'
+        name: 'categoriesPage'
+        fields:
+          - { name: templateKey, widget: hidden, default: categories-page }
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
   - name: workshops
     label: Workshops
     label_singular: Workshop
     folder: src/pages/about/workshops
     create: true
     fields:
-      - { name: templateKey, widget: hidden, default: workshop }
+      - { name: templateKey, widget: hidden, default: workshop-details }
       - { label: Title, name: title, widget: string }
       - { label: From, name: from, widget: datetime }
       - { label: To, name: to, widget: datetime }
@@ -147,12 +172,31 @@ collections:
       - { label: Level, name: level, widget: string }
       - { label: prerequisite, name: Prerequisite, widget: string }
       - { label: Details, name: body, widget: markdown }
+
+  - name: careers
+    label: Careers
+    label_singular: 'Job Posting'
+    folder: src/pages/careers
+    create: true
+    fields:
+      - { name: templateKey, widget: hidden, default: career-details }
+      - { label: Title, name: title, widget: string }
+      - { label: 'Published Date', name: date, widget: datetime }
+      - { label: 'Job Type', name: type, widget: list, default: ['Full Time'] }
+      - { label: Shift, name: shift, widget: string }
+      - { label: Department, name: department, widget: string }
+      - { label: Location, name: location, widget: string }
+      - { label: Country, name: country, widget: string }
+      - { label: Visible, name: visible, widget: boolean }
+      - { label: Body, name: body, widget: markdown }
+
   - name: categories
     label: Categories
     label_singular: Cateogry
     folder: src/pages/categories
     create: true
     fields:
+      - { name: templateKey, widget: hidden, default: category-details }
       - { label: Name, name: name, widget: string }
       - { label: Rank, name: rank, widget: number, required: false }
       - { label: Image, name: image, widget: image }
@@ -170,6 +214,7 @@ collections:
     folder: src/pages/products
     create: true
     fields:
+      - { name: templateKey, widget: hidden, default: product-details }
       - { label: Name, name: name, widget: string }
       - { label: Rank, name: rank, widget: number, required: false }
       - { label: Summary, name: summary, widget: markdown }

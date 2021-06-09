@@ -1,0 +1,13 @@
+@import '~bootstrap/scss/functions.scss';
+@import '~bootstrap/scss/variables.scss';
+@import '~bootstrap/scss/mixins.scss';
+
+.content-wrapper {
+  padding-top: 59px;
+}
+
+@include media-breakpoint-up(lg) {
+  .content-wrapper {
+    padding-top: 60px;
+  }
+}

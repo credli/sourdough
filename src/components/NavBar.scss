@@ -1,0 +1,30 @@
+@import '~bootstrap/scss/functions.scss';
+@import '~bootstrap/scss/variables.scss';
+@import '~bootstrap/scss/mixins.scss';
+
+.navbar-brand {
+  width: 100px;
+}
+
+@include media-breakpoint-up(lg) {
+  .navbar-brand {
+    width: auto;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    width: 100%;
+  }
+
+  .navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .navbar-nav > li:first-child {
+    padding-left: 0;
+  }
+
+  .navbar-nav > li:last-child {
+    padding-right: 0;
+  }
+}

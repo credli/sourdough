@@ -1,0 +1,45 @@
+@import '../components/main.scss';
+
+.footer {
+  font-family: 'Open Sans';
+  font-size: 0.8rem;
+  color: white;
+  background-color: #000;
+
+  & ul > li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  & h5,
+  & hr {
+    color: $primary;
+  }
+
+  & a,
+  & a:hover {
+    color: white;
+  }
+
+  & a {
+    text-decoration: none;
+  }
+
+  & a:hover {
+    text-decoration: underline;
+  }
+}
+
+.social {
+  & i {
+    font-size: 1.4rem;
+  }
+
+  & a {
+    padding-top: 0;
+  }
+
+  & a:first-child {
+    padding-left: 0;
+  }
+}

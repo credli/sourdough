@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/Nicholas/.nvm/versions/node/v14.12.0/bin/node /Users/Nicholas/.nvm/versions/node/v14.12.0/bin/yarn add netlify-cms-app gatsby-plugin-netlifycms
+  /Users/Nicholas/.nvm/versions/node/v14.12.0/bin/node /Users/Nicholas/.nvm/versions/node/v14.12.0/bin/yarn add gatsby-plugin-netlify
 
 PATH: 
   /Users/Nicholas/.yarn/bin:/Users/Nicholas/.nvm/versions/node/v14.12.0/bin:/usr/local/share/npm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/lib/dnx/runtimes/dnx-coreclr-darwin-x64.1.0.0-rc1-final/bin:/Users/Nicholas/.dnx/bin:/opt/local/bin:/opt/local/sbin:/Users/Nicholas/google-cloud-sdk/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/apache-maven/apache-maven-3.1.1/bin:/opt/local/bin:/opt/local/sbin:/Users/Nicholas/go_appengine:/usr/local/git/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/usr/local/go/bin:/Users/Nicholas/.gems/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php5.4.4/bin:/Users/Nicholas/pear/bin:/Users/Nicholas/mongodb/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/Users/Nicholas/nvm:/Users/Nicholas/pear/bin:/Users/Nicholas/casperjs/bin:/Users/Nicholas/android-sdk/tools:/Users/Nicholas/android-sdk/platform-tools:/Users/Nicholas/apache-ant-1.9.2/bin:/usr/local/go/bin:/Users/Nicholas/gradle-2.0/bin:/usr/local/git/bin:/usr/local/bin/grunt:/usr/local/go/bin:/Users/Nicholas/go_appengine:/Users/Nicholas/gocode/bin:/Users/Nicholas/.manymo/bin:/Users/Nicholas/.rvm/bin:/Users/Nicholas/.fzf/bin
@@ -14,17 +14,12 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/gatsby-plugin-netlifycms: Not found
-      at Request.params.callback [as _callback] (/Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:140662:22)
-      at Request.emit (events.js:314:20)
-      at Request.<anonymous> (/Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:141634:10)
-      at Request.emit (events.js:314:20)
-      at IncomingMessage.<anonymous> (/Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:141556:12)
-      at Object.onceWrapper (events.js:420:28)
-      at IncomingMessage.emit (events.js:326:22)
-      at endReadableNT (_stream_readable.js:1252:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  SyntaxError: /Users/Nicholas/Desktop/Developer/SourdoughProjects/sdwebsite/sourdough/package.json: Unexpected token , in JSON at position 1131
+      at JSON.parse (<anonymous>)
+      at /Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /Users/Nicholas/.nvm/versions/node/v14.12.0/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
@@ -34,13 +29,15 @@ npm manifest:
     "description": "Sourdough",
     "author": "Nicholas Credli",
     "keywords": [
-      "gatsby"
+      "sourdough",
+      "bakery",
+      "coffee"
     ],
     "scripts": {
-      "develop": "gatsby develop",
-      "start": "gatsby develop",
-      "build": "gatsby build",
-      "serve": "gatsby serve",
+      "develop": "env-cmd gatsby develop",
+      "start": "env-cmd gatsby develop",
+      "build": "env-cmd gatsby build",
+      "serve": "env-cmd gatsby serve",
       "clean": "gatsby clean"
     },
     "dependencies": {
@@ -48,6 +45,7 @@ npm manifest:
       "@mdx-js/react": "^1.6.22",
       "@popperjs/core": "^2.9.2",
       "bootstrap": "^5.0.0-beta3",
+      "env-cmd": "^10.1.0",
       "gatsby": "^3.6.2",
       "gatsby-image": "^3.6.0",
       "gatsby-plugin-google-analytics": "^3.6.0",
@@ -65,7 +63,7 @@ npm manifest:
       "react-helmet": "^6.1.0",
       "sass": "^1.34.0"
     }
-  }
+  },
 
 yarn manifest: 
   No manifest
@@ -4139,7 +4137,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
     integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
   
-  commander@^4.1.1:
+  commander@^4.0.0, commander@^4.1.1:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
     integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
@@ -5389,6 +5387,14 @@ Lockfile:
     version "2.2.0"
     resolved "https://registry.yarnpkg.com/entities/-/entities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"
     integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
+  
+  env-cmd@^10.1.0:
+    version "10.1.0"
+    resolved "https://registry.yarnpkg.com/env-cmd/-/env-cmd-10.1.0.tgz#c7f5d3b550c9519f137fdac4dd8fb6866a8c8c4b"
+    integrity sha512-mMdWTT9XKN7yNth/6N6g2GuKuJTsKMDHlQFUDacb/heQRRWOTIZ42t1rMHnQu4jYxU1ajdTeJM+9eEETlqToMA==
+    dependencies:
+      commander "^4.0.0"
+      cross-spawn "^7.0.0"
   
   envinfo@^7.7.3:
     version "7.8.1"
