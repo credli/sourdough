@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
@@ -18,11 +18,8 @@ const IndexPage = ({ data }) => {
         image={frontmatter.heroImage}
       />
       <IndexPageView
-        title={frontmatter.title}
-        heroImage={frontmatter.heroImage}
+        carousel={frontmatter.carousel}
         pitch={frontmatter.pitch}
-        mosaic={frontmatter.mosaic}
-        htmlAst={data.markdownRemark.htmlAst}
       />
     </Layout>
   );
@@ -32,20 +29,26 @@ IndexPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.shape({
-        title: PropTypes.string,
-        heroImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
         pitch: PropTypes.shape({
           title: PropTypes.string,
           description: PropTypes.string,
+          image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
         }),
-        mosaic: PropTypes.arrayOf(
+        carousel: PropTypes.arrayOf(
           PropTypes.shape({
             title: PropTypes.string,
             image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+            actions: PropTypes.arrayOf(
+              PropTypes.shape({
+                caption: PropTypes.string.isRequired,
+                actionType: PropTypes.string,
+                action: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+                  .isRequired,
+              })
+            ),
           })
         ),
       }),
-      html: PropTypes.any,
     }),
   }),
 };
@@ -56,31 +59,30 @@ export const query = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        title
-        heroImage {
-          childImageSharp {
-            gatsbyImageData(
-              layout: CONSTRAINED
-              height: 700
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
-        pitch {
-          title
-          description
-        }
-        mosaic {
+        carousel {
           image {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, height: 700)
             }
           }
           title
+          description
+          actions {
+            caption
+            actionType
+            action
+          }
+        }
+        pitch {
+          title
+          description
+          image {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, height: 400)
+            }
+          }
         }
       }
-      htmlAst
     }
   }
 `;

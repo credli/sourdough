@@ -1,96 +1,70 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Carousel } from 'react-bootstrap';
-import { getImage } from 'gatsby-plugin-image';
-import { BgImage } from 'gbimage-bridge';
-import cn from 'classnames';
+import { Carousel, Button } from 'react-bootstrap';
 import { Link } from 'gatsby';
 
 import './Hero.scss';
+import PreviewCompatibleImage from './PreviewCompatibleImage';
 
 function Hero({ interval = 3000, items, className }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  return (
-    <Carousel className={className} fade>
-      {items.map((item, index) => {
-        const pluginImage = getImage(item.image);
-        const backgroundFluidImageStack = [
-          pluginImage,
-          `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5))`,
-        ].reverse();
+  const handleSelect = (selectedIndex, e) => {
+    setActiveIndex(selectedIndex);
+  };
 
+  return (
+    <Carousel
+      activeIndex={activeIndex}
+      onSelect={handleSelect}
+      className={className}
+      fade
+    >
+      {items.map((item, index) => {
         return (
           <Carousel.Item key={index}>
-            <BgImage
-              style={{ height: '700px', width: '100%' }}
-              image={backgroundFluidImageStack}
+            <PreviewCompatibleImage
+              className='item-image'
+              image={item.image}
+              style={{ height: 700, width: '100%' }}
               alt={item.title}
+              background
             />
             <Carousel.Caption>
-              <h5>{item.title}</h5>
+              <div className='content'>
+                <h1 className='display-5'>{item.title}</h1>
+                {item.subtitle && <p>{item.subtitle}</p>}
+                {item.actions &&
+                  item.actions.map((action, index) =>
+                    typeof action.action === 'function' ? (
+                      <Button key={index} size='lg' onClick={action.action}>
+                        {action.caption}
+                      </Button>
+                    ) : (
+                      <Link
+                        key={index}
+                        className={`btn btn-block shadow btn-${
+                          action.actionType ?? 'primary'
+                        }`}
+                        to={action.action}
+                      >
+                        {action.caption}
+                      </Link>
+                    )
+                  )}
+              </div>
             </Carousel.Caption>
+            <svg xmlns='http://www.w3.org/2000/svg' version='1.1'>
+              <defs>
+                <filter id='blur'>
+                  <feGaussianBlur stdDeviation='5' />
+                </filter>
+              </defs>
+            </svg>
           </Carousel.Item>
         );
       })}
     </Carousel>
-    // <div
-    //   id='heroCarousel'
-    //   ref={carouselRef}
-    //   data-bs-ride='carousel'
-    //   className={`carousel slide ${className}`}
-    // >
-    //   <div className='carousel-indicators'>
-    //     {items.map((item, index) => (
-    //       <button
-    //         key={index}
-    //         type='button'
-    //         data-bs-target='#heroCarousel'
-    //         data-bs-slide-to={`${activeIndex}`}
-    //         aria-current={index === activeIndex ? 'true' : 'false'}
-    //         className={cn(index === activeIndex && 'active')}
-    //       ></button>
-    //     ))}
-    //   </div>
-    //   <div className='carousel-inner'>
-    //     {items.map((item, index) => {
-    //       const pluginImage = getImage(item.image);
-    //       const backgroundFluidImageStack = [
-    //         pluginImage,
-    //         `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))`,
-    //       ].reverse();
-
-    //       return (
-    //         <div
-    //           key={index}
-    //           className={cn('carousel-item', index === activeIndex && 'active')}
-    //         >
-    //           <BgImage
-    //             image={backgroundFluidImageStack}
-    //             className='d-block w-100'
-    //             alt={item.title || 'Hero image'}
-    //           />
-    //           {item.title && (
-    //             <div className='carousel-caption d-none d-lg-block'>
-    //               <h5>{item.title}</h5>
-    //               {item.subtitle && <p>{item.subtitle}</p>}
-    //               {item.actions &&
-    //                 item.actions.map((action, index) =>
-    //                   typeof action.action === 'function' ? (
-    //                     <button type='button' onClick={action.action}>
-    //                       {action.caption}
-    //                     </button>
-    //                   ) : (
-    //                     <Link to={action.action}>{action.caption}</Link>
-    //                   )
-    //                 )}
-    //             </div>
-    //           )}
-    //         </div>
-    //       );
-    //     })}
-    //   </div>
-    // </div>
   );
 }
 
@@ -103,6 +77,7 @@ const ImagePropType = PropTypes.shape({
 const ActionButtonPropType = PropTypes.shape({
   caption: PropTypes.string.isRequired,
   action: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+  actionType: PropTypes.oneOf(['primary', 'secondary']),
 });
 
 Hero.propTypes = {

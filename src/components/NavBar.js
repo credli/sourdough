@@ -1,24 +1,18 @@
 import React from 'react';
 import { Container, Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 
 import './NavBar.scss';
 
 export default function NavBar() {
-  const data = useStaticQuery(graphql`
-    {
-      file(relativePath: { eq: "logo.png" }) {
-        childImageSharp {
-          gatsbyImageData(height: 66, layout: CONSTRAINED)
-        }
-      }
-    }
-  `);
-
   return (
     <header>
-      <Navbar className='navbar-light bg-light' expand='lg' fixed='top'>
+      <Navbar
+        className='navbar-light bg-light shadow-sm'
+        expand='lg'
+        fixed='top'
+      >
         <Container className='px-lg-5' fluid>
           <Navbar.Collapse className='order-lg-1 order-3 navigation-menu'>
             <Nav className='align-items-lg-center me-auto'>
@@ -46,8 +40,11 @@ export default function NavBar() {
           </Navbar.Collapse>
 
           <Navbar.Brand className='order-1 order-lg-2 me-lg-0' as={Link} to='/'>
-            <GatsbyImage
-              image={data.file.childImageSharp.gatsbyImageData}
+            <StaticImage
+              src='../../static/img/logo.png'
+              placeholder='none'
+              layout='fixed'
+              height={34}
               alt='Sourdough Artisan Bread &amp; Coffee'
             />
           </Navbar.Brand>

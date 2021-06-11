@@ -13,7 +13,7 @@ module.exports = {
       'Sourdough is a community-based artisan bakery that specializes in baking artisanal bread and pastry and delivering great experiences, located in Broumana - Lebanon. Through careful preparation and long fermentation, we produce authentic bread that is delicious and healthy.',
     phone: '+96124961223',
     mobile: '+96176667407',
-    email: 'sourdoughbc@gmail.com',
+    email: 'hello@sourdough.me',
     social: {
       instagram: 'http://instagram.com/sourdough_lebanon',
       facebook: 'https://www.facebook.com/sourdoughbreadcoffee/',
@@ -114,7 +114,12 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

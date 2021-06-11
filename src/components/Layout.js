@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import useSiteMetadata from '../hooks/useSiteMetadata';
 
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -8,8 +7,6 @@ import Footer from './Footer';
 import { contentWrapper } from './Layout.module.scss';
 
 export default function Layout({ children }) {
-  const { title, description } = useSiteMetadata();
-
   return (
     <>
       <Helmet>

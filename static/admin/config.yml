@@ -31,8 +31,35 @@ collections:
         name: 'indexPage'
         fields:
           - { name: templateKey, widget: hidden, default: index-page }
-          - { label: Title, name: title, widget: string }
-          - { label: 'Hero Image', name: heroImage, widget: image }
+          - {
+              label: Carousel,
+              name: carousel,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Description, name: description, widget: string },
+                  { label: Image, name: image, widget: image },
+                  {
+                    label: Actions,
+                    name: actions,
+                    required: false,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Caption, name: caption, widget: string },
+                        { label: Action, name: action, widget: string },
+                        {
+                          label: Type,
+                          name: actionType,
+                          widget: select,
+                          options: ['primary', 'secondary'],
+                          default: 'primary',
+                        },
+                      ],
+                  },
+                ],
+            }
           - {
               label: 'Main Pitch',
               name: pitch,
@@ -41,19 +68,10 @@ collections:
                 [
                   { label: Title, name: title, widget: string },
                   { label: Description, name: description, widget: string },
-                ],
-            }
-          - { label: Body, name: body, widget: markdown }
-          - {
-              label: Mosaic,
-              name: mosaic,
-              widget: list,
-              fields:
-                [
-                  { label: Title, name: title, widget: string },
                   { label: Image, name: image, widget: image },
                 ],
             }
+
       - file: src/pages/about/index.md
         label: 'About Page'
         name: 'aboutPage'

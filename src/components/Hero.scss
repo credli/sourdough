@@ -1,0 +1,126 @@
+@import '~bootstrap/scss/functions.scss';
+@import '~bootstrap/scss/variables.scss';
+@import '~bootstrap/scss/mixins.scss';
+
+.carousel-caption {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: url('#blur');
+  backdrop-filter: blur(5px);
+  top: 10%;
+  left: 10%;
+  bottom: unset;
+  right: unset;
+  max-width: 70%;
+  text-align: left;
+  padding: 25px;
+  border-radius: 10px;
+  z-index: 9;
+
+  & > .content {
+    animation: fadeIn ease-in 1s;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.carousel-caption h1 {
+  line-height: 50px;
+}
+
+.carousel-caption p {
+  font-weight: lighter;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.carousel-caption .btn {
+  margin-right: 10px;
+}
+
+.carousel-caption .btn:last-child {
+  margin-right: 0;
+}
+
+@include media-breakpoint-up(lg) {
+  .carousel-caption {
+    max-width: 40%;
+  }
+
+  .carousel-caption .btn {
+    @include button-size(
+      $input-btn-padding-y-lg,
+      $input-btn-padding-x-lg,
+      $font-size-lg,
+      $btn-border-radius-lg
+    );
+  }
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.item-image {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 16s;
+  transform: scale(1.3);
+  animation-name: kenburns;
+}
+
+@keyframes kenburns {
+  0% {
+    // opacity: 0;
+  }
+  5% {
+    // opacity: 1;
+  }
+  100% {
+    transform: scale3d(1.2, 1.2, 1.2) translate3d(69px, -2px, 0px);
+    animation-timing-function: ease-in;
+  }
+}
+
+// @keyframes kenburns-2 {
+//   0% {
+//     opacity: 0;
+//   }
+//   5% {
+//     opacity: 1;
+//   }
+//   95% {
+//     transform: scale3d(1.2, 1.2, 1.2) translate3d(69px, -2px, 0px);
+//     animation-timing-function: ease-in;
+//     opacity: 1;
+//   }
+//   100% {
+//     transform: scale3d(1.7, 1.7, 1.7) translate3d(-11px, -12px, 0px);
+//     opacity: 0;
+//   }
+// }
+
+// @keyframes kenburns-3 {
+//   0% {
+//     opacity: 0;
+//   }
+//   5% {
+//     opacity: 1;
+//   }
+//   95% {
+//     transform: scale3d(1.2, 1.2, 1.2) translate3d(69px, -2px, 0px);
+//     animation-timing-function: ease-in;
+//     opacity: 1;
+//   }
+//   100% {
+//     transform: scale3d(1.7, 1.7, 1.7) translate3d(-11px, -12px, 0px);
+//     opacity: 0;
+//   }
+// }
