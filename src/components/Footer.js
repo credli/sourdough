@@ -20,13 +20,18 @@ export default function Footer() {
       <Container fluid>
         <Row className='py-4 px-lg-5'>
           <Col xs={12} lg={4}>
-            <h5>Check out more</h5>
-            <hr />
-            <ul className='list-unstyled'>
-              <li>Career Opportunities</li>
-              <li>Privacy Policy</li>
-              <li>General Conditions of Sale, Delivery, and Payments</li>
-            </ul>
+            <div className={`${social} d-flex`}>
+              <OutboundLink className='nav-link' href={instagram}>
+                <i className='bi-instagram' />
+              </OutboundLink>
+              <OutboundLink className='nav-link' href={facebook}>
+                <i className='bi-facebook' />
+              </OutboundLink>
+              <OutboundLink className='nav-link' href={twitter}>
+                <i className='bi-twitter' />
+              </OutboundLink>
+            </div>
+            <div className='py-3 small'>2021&reg; Copyright {company}</div>
           </Col>
 
           <Col xs={12} lg={4}>
@@ -59,18 +64,13 @@ export default function Footer() {
           </Col>
 
           <Col xs={12} lg={4}>
-            <div className={`${social} d-flex`}>
-              <OutboundLink className='nav-link' href={instagram}>
-                <i className='bi-instagram' />
-              </OutboundLink>
-              <OutboundLink className='nav-link' href={facebook}>
-                <i className='bi-facebook' />
-              </OutboundLink>
-              <OutboundLink className='nav-link' href={twitter}>
-                <i className='bi-twitter' />
-              </OutboundLink>
-            </div>
-            <div className='py-3 small'>2021&reg; Copyright {company}</div>
+            <h5>Check out more</h5>
+            <hr />
+            <ul className='list-unstyled'>
+              <li>Career Opportunities</li>
+              <li>Privacy Policy</li>
+              <li>General Conditions of Sale, Delivery, and Payments</li>
+            </ul>
           </Col>
         </Row>
       </Container>

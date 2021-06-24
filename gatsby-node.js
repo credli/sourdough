@@ -1,6 +1,9 @@
-const _ = require("lodash");
-const path = require("path");
-const { createFilePath } = require("gatsby-source-filesystem");
+const _ = require('lodash');
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
+const Slugify = require('slugify');
+
+const slugify = (s) => Slugify(s, { lower: true, remove: /[*+~.()'"!:@]/g });
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
@@ -25,13 +28,13 @@ exports.createPages = async ({ actions, graphql }) => {
   `);
 
   if (result.errors) {
-    result.errors.forEach(e => console.error(e.toString()));
+    result.errors.forEach((e) => console.error(e.toString()));
     return Promise.reject(result.errors);
   }
 
   const pages = result.data.allMarkdownRemark.edges;
 
-  pages.forEach(edge => {
+  pages.forEach((edge) => {
     const id = edge.node.id;
     createPage({
       path: edge.node.fields.slug,
@@ -41,15 +44,15 @@ exports.createPages = async ({ actions, graphql }) => {
       ),
       // additional data can be passed via context
       context: {
-        id
-      }
+        id,
+      },
     });
   });
 
   // Tag pages:
   let tags = [];
   // Iterate through each page, putting all found tags into `tags`
-  pages.forEach(edge => {
+  pages.forEach((edge) => {
     if (_.get(edge, `node.frontmatter.tags`)) {
       tags = tags.concat(edge.node.frontmatter.tags);
     }
@@ -58,15 +61,15 @@ exports.createPages = async ({ actions, graphql }) => {
   tags = _.uniq(tags);
 
   // Make tag pages
-  tags.forEach(tag => {
-    const tagPath = `/tags/${_.kebabCase(tag)}/`;
+  tags.forEach((tag) => {
+    const tagPath = `/tags/${slugify(tag)}/`;
 
     createPage({
       path: tagPath,
       component: path.resolve(`src/templates/tags.js`),
       context: {
-        tag
-      }
+        tag,
+      },
     });
   });
 };
@@ -74,12 +77,21 @@ exports.createPages = async ({ actions, graphql }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
+  if (node.internal.type.indexOf('Json') > -1) {
+    const value = slugify(node.name);
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    });
+  }
+
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
-      value
+      value,
     });
   }
 };

@@ -35,8 +35,7 @@ $theme-colors: (
 
 @import '~bootstrap/scss/helpers';
 @import '~bootstrap/scss/utilities/api';
-
-// @import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/forms';
 
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);

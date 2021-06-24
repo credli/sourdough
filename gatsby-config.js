@@ -33,6 +33,17 @@ module.exports = {
   },
   plugins: [
     {
+      // keep as first gatsby-source-filesystem plugin for gatsby image support
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/static/img`,
+        name: 'images',
+      },
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
@@ -43,21 +54,6 @@ module.exports = {
         display: 'swap',
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
-    //   options: {
-    //     fonts: [
-    //       {
-    //         family: 'Yanone Kaffeesatz',
-    //         variants: [`100`, `400`],
-    //       },
-    //       {
-    //         family: 'Open Sans',
-    //         variants: [`100`, `200`, `300`, `400`],
-    //       },
-    //     ],
-    //   },
-    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-sass`,
@@ -66,11 +62,9 @@ module.exports = {
       },
     },
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-plugin-purgecss`,
       options: {
-        path: `${__dirname}/static/img`,
-        name: 'images',
+        printRejected: true,
       },
     },
     {
@@ -81,9 +75,21 @@ module.exports = {
       },
       __key: 'pages',
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-image`,
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/categories`,
+        name: 'categories',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/products`,
+        name: 'products',
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -126,16 +132,15 @@ module.exports = {
         trackingId: 'G-R6CD790R2Y',
       },
     },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `sourdough_lebanon`,
-        instagram_id: '13780395339',
-        paginate: 100,
-        maxPosts: 1000,
-        hashtags: true,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-instagram`,
+    //   options: {
+    //     username: `13780395339`,
+    //     paginate: 100,
+    //     maxPosts: 1000,
+    //     hashtags: true,
+    //   },
+    // },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify`,
   ],

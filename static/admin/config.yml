@@ -5,7 +5,7 @@ backend:
 
 local_backend: true
 media_folder: static/img
-public_folder: /img
+# public_folder: /img
 
 collections:
   - name: blog
@@ -211,10 +211,13 @@ collections:
   - name: categories
     label: Categories
     label_singular: Cateogry
-    folder: src/pages/categories
+    folder: 'content/categories'
     create: true
+    extension: json
+    slug: '{{name}}'
+    media_folder: 'img'
     fields:
-      - { name: templateKey, widget: hidden, default: category-details }
+      - { name: templateKey, widget: hidden, default: category }
       - { label: Name, name: name, widget: string }
       - { label: Rank, name: rank, widget: number, required: false }
       - { label: Image, name: image, widget: image }
@@ -229,10 +232,13 @@ collections:
   - name: products
     label: Products
     label_singular: Product
-    folder: src/pages/products
+    folder: 'content/products'
     create: true
+    extension: json
+    slug: '{{name}}'
+    media_folder: 'img'
     fields:
-      - { name: templateKey, widget: hidden, default: product-details }
+      - { name: templateKey, widget: hidden, default: product }
       - { label: Name, name: name, widget: string }
       - { label: Rank, name: rank, widget: number, required: false }
       - { label: Summary, name: summary, widget: markdown }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { BgImage } from 'gbimage-bridge';
 
-import { dimmed } from './PreviewCompatibleImage.module.scss';
+import { imageWrapper, dimmed } from './PreviewCompatibleImage.module.scss';
 
 function PreviewCompatibleImage({
   background = false,
@@ -43,27 +43,17 @@ function PreviewCompatibleImage({
   }
 
   if (!!image && typeof image === 'string') {
-    if (background) {
-      return (
-        <img
-          className={className}
-          style={style}
-          src={image}
-          alt={alt}
-          {...rest}
-        />
-      );
-    } else {
-      return (
-        <img
-          className={className}
-          style={style}
-          src={image}
-          alt={alt}
-          {...rest}
-        />
-      );
-    }
+    console.log('image', image);
+    console.log('rest', rest);
+    return (
+      <div
+        className={`${imageWrapper} ${
+          background ? className + ' ' + dimmed : className
+        }`}
+      >
+        <img style={style} src={image} alt={alt} {...rest} />
+      </div>
+    );
   }
 }
 

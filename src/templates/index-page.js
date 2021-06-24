@@ -6,9 +6,11 @@ import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 
 import IndexPageView from './views/index-page-view';
+import Categories from './views/components/Categories';
+import Newsletter from './views/components/Newsletter';
 
 const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
+  const { frontmatter } = data.index;
 
   return (
     <Layout>
@@ -21,13 +23,15 @@ const IndexPage = ({ data }) => {
         carousel={frontmatter.carousel}
         pitch={frontmatter.pitch}
       />
+      <Categories categories={data.categories} />
+      <Newsletter />
     </Layout>
   );
 };
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
+    index: PropTypes.shape({
       frontmatter: PropTypes.shape({
         pitch: PropTypes.shape({
           title: PropTypes.string,
@@ -50,6 +54,17 @@ IndexPage.propTypes = {
         ),
       }),
     }),
+    categories: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            slug: PropTypes.string,
+            name: PropTypes.string,
+            image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+          }),
+        })
+      ),
+    }),
   }),
 };
 
@@ -57,7 +72,7 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+    index: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         carousel {
           image {
@@ -79,6 +94,21 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, height: 400)
+            }
+          }
+        }
+      }
+    }
+    categories: allCategoriesJson(sort: { fields: [rank], order: [ASC] }) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          name
+          image {
+            childImageSharp {
+              gatsbyImageData(layout: FIXED, height: 400)
             }
           }
         }

@@ -21,7 +21,7 @@ carousel:
       - actionType: primary
         caption: Order Now
         action: order?category=pastries
-  - title: Mornings Done Right
+  - title: Mornings Made Right
     description: Each morning, our single-origin organic coffee is freshly roasted
       in our deck oven after a long AM bake. Enjoy in Espresso, AEROPRESS®, or
       CHEMEX®, or pair with your pastry of choice. Beans are available upon
