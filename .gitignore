@@ -2,3 +2,7 @@ node_modules/
 .cache/
 public
 .vscode
+.wordpress-cache
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,7 @@
+{
+  "announcement": {
+    "theme": "primary",
+    "message": "Our <a href='/shop'>online store</a> is open, place your order for tomorrow before 6pm!",
+    "visible": true
+  }
+}

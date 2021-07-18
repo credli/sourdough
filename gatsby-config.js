@@ -2,6 +2,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 require('dotenv').config();
 
 const SITE_URL = process.env.SITE_URL || 'https://sourdough.me';
+const WP_GRAPHQL_ENDPOINT =
+  process.env.WP_GRAPHQL_ENDPOINT || 'http://sourdough.local/graphql';
 
 module.exports = {
   siteMetadata: {
@@ -32,6 +34,75 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        verbose: true,
+        url: WP_GRAPHQL_ENDPOINT,
+        develop: {
+          hardCacheMediaFiles: true,
+          hardCacheData: true,
+        },
+        type: {
+          Menu: {
+            exclude: true,
+          },
+          MenuItem: {
+            exclude: true,
+          },
+          Comment: {
+            exclude: true,
+          },
+          User: {
+            exclude: true,
+          },
+          UserRole: {
+            exclude: true,
+          },
+          Page: {
+            exclude: true,
+          },
+          Post: {
+            exclude: true,
+          },
+          Category: {
+            exclude: true,
+          },
+          Order: {
+            exclude: true,
+          },
+          Coupon: {
+            exclude: true,
+          },
+          Customer: {
+            exclude: true,
+          },
+          PostFormat: {
+            exclude: true,
+          },
+          ContentType: {
+            exclude: true,
+          },
+          Refund: {
+            exclude: true,
+          },
+          Taxonomy: {
+            exclude: true,
+          },
+        },
+        schema: {
+          timeout: 120000,
+        },
+      },
+    },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: 'GQL',
+        fieldName: 'gql',
+        url: WP_GRAPHQL_ENDPOINT,
+      },
+    },
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -79,15 +150,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/categories`,
-        name: 'categories',
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/products`,
-        name: 'products',
+        path: `${__dirname}/content/settings`,
+        name: `settings`,
       },
     },
     {

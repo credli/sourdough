@@ -1,13 +1,14 @@
 ---
 templateKey: career-details
-title: Assistant Baker
 date: 2021-06-04T21:27:09.104Z
-jobType: Full Time
 shift: 5AM - 4PM
 department: Kitchen Operations
 location: Broumana
 country: Lebanon
 visible: true
+jobType: Full Time
+title: Assistant Baker
+type: Full-time
 ---
 
 ### JOB DESCRIPTION

@@ -43,3 +43,9 @@
     padding-left: 0;
   }
 }
+
+.logo {
+  width: 150px;
+  -webkit-filter: grayscale(1) invert(1);
+  filter: grayscale(1) invert(1);
+}

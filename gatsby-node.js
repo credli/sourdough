@@ -5,7 +5,9 @@ const Slugify = require('slugify');
 
 const slugify = (s) => Slugify(s, { lower: true, remove: /[*+~.()'"!:@]/g });
 
-exports.createPages = async ({ actions, graphql }) => {
+exports.createPages = async (args) => {
+  console.log(args);
+  const { actions, graphql } = args;
   const { createPage } = actions;
 
   const result = await graphql(`
@@ -24,6 +26,46 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
+      categories: allWpProductCategory(
+        filter: { slug: { ne: "uncategorized" } }
+        sort: { fields: [menuOrder], order: [ASC] }
+      ) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+      products: allWpProduct(
+        filter: {
+          productCategories: {
+            nodes: { elemMatch: { slug: { nin: ["uncategorized"] } } }
+          }
+        }
+      ) {
+        nodes {
+          ... on WpSimpleProduct {
+            productCategories {
+              nodes {
+                name
+                slug
+              }
+            }
+            slug
+            databaseId
+          }
+          ... on WpVariableProduct {
+            productCategories {
+              nodes {
+                name
+                slug
+              }
+            }
+            slug
+            databaseId
+          }
+        }
+      }
     }
   `);
 
@@ -33,7 +75,10 @@ exports.createPages = async ({ actions, graphql }) => {
   }
 
   const pages = result.data.allMarkdownRemark.edges;
+  const categories = result.data.categories.edges;
+  const products = result.data.products.nodes;
 
+  // pages with markdown support
   pages.forEach((edge) => {
     const id = edge.node.id;
     createPage({
@@ -72,19 +117,45 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     });
   });
+
+  // shop page (categories)
+  categories.forEach((edge) => {
+    createPage({
+      path: `/shop/${edge.node.slug}`,
+      component: path.resolve(`src/templates/shop-page.js`),
+      context: {
+        category: edge.node.slug,
+      },
+    });
+  });
+
+  // product details
+  products.forEach((node) => {
+    const productCategories = node.productCategories.nodes.map((node) => node);
+    createPage({
+      path: `/shop/${productCategories[0].slug}/${node.slug}`,
+      component: path.resolve(`src/templates/product-details.js`),
+      context: {
+        slug: node.slug,
+        databaseId: node.databaseId,
+        productCategories,
+      },
+    });
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type.indexOf('Json') > -1) {
-    const value = slugify(node.name);
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    });
-  }
+  // TODO: remove, not needed since we no longer use json for ecommerce
+  // if (node.internal.type.indexOf('Json') > -1) {
+  //   const value = slugify(node.name);
+  //   createNodeField({
+  //     name: `slug`,
+  //     node,
+  //     value,
+  //   });
+  // }
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });

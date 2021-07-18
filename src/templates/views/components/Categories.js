@@ -5,7 +5,11 @@ import { getImage } from 'gatsby-plugin-image';
 import { BgImage } from 'gbimage-bridge';
 import PropTypes from 'prop-types';
 
-import { categoryImage, categoryTitleWrapper } from './Categories.module.scss';
+import {
+  categoryBox,
+  categoryImage,
+  categoryTitleWrapper,
+} from './Categories.module.scss';
 
 function Categories({ categories }) {
   return (
@@ -14,23 +18,25 @@ function Categories({ categories }) {
         .map((e) => e.node)
         .map((category, index) => {
           const pluginImage = getImage(
-            category.image.childImageSharp.gatsbyImageData
+            category.image.localFile.childImageSharp.gatsbyImageData
           );
 
           return (
             <Col key={index} lg={3}>
-              <Link to={`/products?category=${category.fields.slug}`}>
-                <BgImage
-                  className={categoryImage}
-                  image={pluginImage}
-                  alt={category.name}
-                >
-                  <div
-                    className={`${categoryTitleWrapper} d-flex justify-content-center align-items-center`}
+              <Link to={`/shop?category=${category.slug}`}>
+                <div className={categoryBox}>
+                  <BgImage
+                    className={categoryImage}
+                    image={pluginImage}
+                    alt={category.altText}
                   >
-                    <h3 className='display-5'>{category.name}</h3>
-                  </div>
-                </BgImage>
+                    <div
+                      className={`${categoryTitleWrapper} d-flex justify-content-center align-items-center`}
+                    >
+                      <h3 className='display-5'>{category.name}</h3>
+                    </div>
+                  </BgImage>
+                </div>
               </Link>
             </Col>
           );

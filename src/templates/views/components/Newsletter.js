@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row, Form, Button, Card } from 'react-bootstrap';
+import { Col, Row, Form, Button, Card } from 'react-bootstrap';
 
 import { newsletterRow } from './Newsletter.module.scss';
 
@@ -18,11 +18,11 @@ function Newsletter() {
               </p>
               <div className='form-floating mb-3'>
                 <Form.Control id='nameInput' type='text' size='lg' />
-                <Form.Label for='nameInput'>Your name</Form.Label>
+                <Form.Label htmlFor='nameInput'>Your name</Form.Label>
               </div>
               <div className='form-floating mb-3'>
                 <Form.Control id='emailInput' type='text' size='lg' />
-                <Form.Label for='emailInput'>Email address</Form.Label>
+                <Form.Label htmlFor='emailInput'>Email address</Form.Label>
               </div>
               <Button type='submit' size='lg'>
                 Subscribe

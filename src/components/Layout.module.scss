@@ -4,6 +4,22 @@
 
 .content-wrapper {
   padding-top: 59px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.header,
+.main,
+.footer {
+  flex-shrink: 0;
 }
 
 @include media-breakpoint-up(lg) {

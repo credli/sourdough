@@ -77,7 +77,13 @@ export const query = graphql`
         carousel {
           image {
             childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED, height: 700)
+              gatsbyImageData(
+                aspectRatio: 1.77
+                # height: 700
+                quality: 100
+                blurredOptions: { width: 200 }
+                transformOptions: { cropFocus: CENTER, fit: COVER }
+              )
             }
           }
           title
@@ -99,16 +105,24 @@ export const query = graphql`
         }
       }
     }
-    categories: allCategoriesJson(sort: { fields: [rank], order: [ASC] }) {
+    categories: allWpProductCategory(
+      sort: { fields: [menuOrder], order: [ASC] }
+      filter: { slug: { ne: "uncategorized" } }
+    ) {
       edges {
         node {
-          fields {
-            slug
-          }
+          slug
           name
           image {
-            childImageSharp {
-              gatsbyImageData(layout: FIXED, height: 400)
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FIXED
+                  placeholder: BLURRED
+                  height: 400
+                )
+              }
             }
           }
         }

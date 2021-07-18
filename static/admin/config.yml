@@ -8,6 +8,39 @@ media_folder: static/img
 # public_folder: /img
 
 collections:
+  - name: settings
+    label: Settings
+    files:
+      - file: content/settings/site.json
+        label: Site Settings
+        name: 'siteSettings'
+        fields:
+          - {
+              name: announcement,
+              label: Announcement,
+              widget: object,
+              fields:
+                [
+                  { name: message, label: message, widget: text },
+                  {
+                    name: theme,
+                    label: Theme,
+                    widget: select,
+                    options:
+                      [
+                        { label: 'Normal', value: 'primary' },
+                        { label: 'Info', value: 'info' },
+                        { label: 'Danger', value: 'danger' },
+                      ],
+                  },
+                  {
+                    name: visible,
+                    label: Show,
+                    widget: boolean,
+                    default: false,
+                  },
+                ],
+            }
   - name: blog
     label: Blog
     folder: src/pages/blog
@@ -160,20 +193,6 @@ collections:
               name: cancellationPolicy,
               widget: markdown,
             }
-      - file: src/pages/products/index.md
-        label: 'Products Page'
-        name: 'productsPage'
-        fields:
-          - { name: templateKey, widget: hidden, default: products-page }
-          - { label: Title, name: title, widget: string }
-          - { label: Body, name: body, widget: markdown }
-      - file: src/pages/categories/index.md
-        label: 'Categories Page'
-        name: 'categoriesPage'
-        fields:
-          - { name: templateKey, widget: hidden, default: categories-page }
-          - { label: Title, name: title, widget: string }
-          - { label: Body, name: body, widget: markdown }
 
   - name: workshops
     label: Workshops
@@ -200,73 +219,17 @@ collections:
       - { name: templateKey, widget: hidden, default: career-details }
       - { label: Title, name: title, widget: string }
       - { label: 'Published Date', name: date, widget: datetime }
-      - { label: 'Job Type', name: type, widget: list, default: ['Full Time'] }
+      - {
+          label: 'Job Type',
+          name: type,
+          widget: select,
+          options:
+            ['Full-time', 'Part-time', 'Internship', 'Per hour', 'Consultancy'],
+          default: ['Full Time'],
+        }
       - { label: Shift, name: shift, widget: string }
       - { label: Department, name: department, widget: string }
       - { label: Location, name: location, widget: string }
       - { label: Country, name: country, widget: string }
       - { label: Visible, name: visible, widget: boolean }
       - { label: Body, name: body, widget: markdown }
-
-  - name: categories
-    label: Categories
-    label_singular: Cateogry
-    folder: 'content/categories'
-    create: true
-    extension: json
-    slug: '{{name}}'
-    media_folder: 'img'
-    fields:
-      - { name: templateKey, widget: hidden, default: category }
-      - { label: Name, name: name, widget: string }
-      - { label: Rank, name: rank, widget: number, required: false }
-      - { label: Image, name: image, widget: image }
-      - { label: Icon, name: icon, widget: string, required: false }
-      - {
-          label: Description,
-          name: description,
-          widget: markdown,
-          required: false,
-        }
-
-  - name: products
-    label: Products
-    label_singular: Product
-    folder: 'content/products'
-    create: true
-    extension: json
-    slug: '{{name}}'
-    media_folder: 'img'
-    fields:
-      - { name: templateKey, widget: hidden, default: product }
-      - { label: Name, name: name, widget: string }
-      - { label: Rank, name: rank, widget: number, required: false }
-      - { label: Summary, name: summary, widget: markdown }
-      - { label: Schedule, name: schedule, widget: string, required: false }
-      - { label: Price, name: price, widget: number }
-      - {
-          label: Images,
-          name: images,
-          widget: list,
-          fields:
-            [
-              { label: Image, name: image, widget: image },
-              {
-                label: Description,
-                name: description,
-                widget: string,
-                required: false,
-              },
-            ],
-        }
-      - {
-          label: Attributes,
-          name: attributes,
-          widget: list,
-          fields:
-            [
-              { label: Key, name: key, widget: string },
-              { label: Value, name: value, widget: string },
-              { label: Icon, name: icon, widget: string, required: false },
-            ],
-        }

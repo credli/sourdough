@@ -1,5 +1,25 @@
+@import '../../../components/main.scss';
+
+.category-box {
+  overflow: hidden;
+  position: relative;
+}
+
+.category-box:hover .category-image,
+.category-box:focus .category-image {
+  transform: scale(1.2);
+}
+
+.category-box:hover .category-title-wrapper,
+.category-box:hover .category-title-wrapper {
+  background: none;
+}
+
 .category-image {
   width: 100% !important;
+  background-position: center;
+  background-size: cover;
+  transition: all 0.5s;
 }
 
 .category-title-wrapper {

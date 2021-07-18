@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import { StaticImage } from 'gatsby-plugin-image';
 import useSiteMetadata from '../hooks/useSiteMetadata';
-import { footer, social } from './Footer.module.scss';
+import { footer, social, logo } from './Footer.module.scss';
 
 export default function Footer() {
   const {
@@ -16,9 +17,9 @@ export default function Footer() {
   } = useSiteMetadata();
 
   return (
-    <footer className={footer}>
-      <Container fluid>
-        <Row className='py-4 px-lg-5'>
+    <div className={footer}>
+      <Container>
+        <Row className='py-4'>
           <Col xs={12} lg={4}>
             <div className={`${social} d-flex`}>
               <OutboundLink className='nav-link' href={instagram}>
@@ -31,6 +32,11 @@ export default function Footer() {
                 <i className='bi-twitter' />
               </OutboundLink>
             </div>
+            <StaticImage
+              className={`${logo} my-3`}
+              src='../../static/img/logo.png'
+              alt='Sourdough'
+            />
             <div className='py-3 small'>2021&reg; Copyright {company}</div>
           </Col>
 
@@ -74,6 +80,6 @@ export default function Footer() {
           </Col>
         </Row>
       </Container>
-    </footer>
+    </div>
   );
 }
