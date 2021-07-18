@@ -51,7 +51,12 @@ function ShopPage({ data, pageContext: { category } }) {
             />
           </Col>
           <Col lg={9}>
-            <ProductGrid products={data.products.edges.map((e) => e.node)} />
+            <ProductGrid
+              products={data.products.edges.map((e) => e.node)}
+              placeholderImage={
+                data.placeholderImage.childImageSharp.gatsbyImageData
+              }
+            />
           </Col>
         </Row>
       </Container>
@@ -63,6 +68,11 @@ export default ShopPage;
 
 export const query = graphql`
   query ShopPageQuery($category: String!) {
+    placeholderImage: file(relativePath: { eq: "product-placeholder.webp" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+      }
+    }
     categories: allWpProductCategory(
       filter: { slug: { ne: "uncategorized" } }
       sort: { fields: [menuOrder], order: [ASC] }
@@ -87,7 +97,6 @@ export const query = graphql`
         node {
           __typename
           slug
-          sku
           name
           productCategories {
             nodes {
@@ -104,16 +113,13 @@ export const query = graphql`
             }
           }
           ... on WpSimpleProduct {
-            price
-            salePrice
+            sku
           }
           ... on WpVariableProduct {
             variations {
               nodes {
                 sku
                 name
-                price
-                salePrice
                 image {
                   altText
                   localFile {

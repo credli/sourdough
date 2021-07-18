@@ -4,33 +4,32 @@ import axios from 'axios';
 export const InventoryContext = createContext();
 
 export const InventoryProvider = ({ children }) => {
-  const [data, setData] = useState({
-    loading: false,
-    error: null,
-    inventory: null,
-    getProduct,
-  });
-  const getProduct = (sku) => data.inventory && data.inventory[sku];
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [inventory, setInventory] = useState([]);
 
   const fetchInventory = async (slug) => {
-    setData({ ...data, loading: true, inventory: null, error: null });
+    setLoading(true);
     try {
-      console.log('slug:', slug);
-      const result = await axios.post(`/.netlify/functions/inventory`, {
-        slug,
-      });
-      setData({ ...data, inventory: result.data.inventory });
+      const result = await axios.post(`/.netlify/functions/inventory`);
+      console.log('result:', result);
+      setInventory(result.data.products);
     } catch (error) {
-      setData({ ...data, error });
+      setError(error);
     } finally {
-      setData({ ...data, loading: false });
+      setLoading(false);
     }
   };
 
-  useEffect(() => fetchInventory(), []);
+  useEffect(fetchInventory, []);
+
+  const getProduct = (sku) =>
+    inventory && inventory.find((p) => p.slug === sku);
 
   return (
-    <InventoryContext.Provider value={data}>
+    <InventoryContext.Provider
+      value={{ loading, error, inventory, getProduct }}
+    >
       {children}
     </InventoryContext.Provider>
   );

@@ -6,7 +6,6 @@ const Slugify = require('slugify');
 const slugify = (s) => Slugify(s, { lower: true, remove: /[*+~.()'"!:@]/g });
 
 exports.createPages = async (args) => {
-  console.log(args);
   const { actions, graphql } = args;
   const { createPage } = actions;
 

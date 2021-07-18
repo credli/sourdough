@@ -1,7 +1,11 @@
-require('./src/components/main.scss');
-require('bootstrap-icons/font/bootstrap-icons.css');
-require('@popperjs/core/dist/umd/popper.min.js');
-require('bootstrap/dist/js/bootstrap.min.js');
+import React from 'react';
+
+import './src/components/main.scss';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import '@popperjs/core/dist/umd/popper.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
+import InventoryProvider from './src/context/InventoryProvider';
 
 export const onClientEntry = () => {
   // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
@@ -10,3 +14,7 @@ export const onClientEntry = () => {
     console.log(`# IntersectionObserver is polyfilled!`);
   }
 };
+
+export const wrapRootElement = ({ element }) => (
+  <InventoryProvider>{element}</InventoryProvider>
+);
