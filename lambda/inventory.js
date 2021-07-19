@@ -30,6 +30,17 @@ async function _execGQL(query, variables) {
   return response.data;
 }
 
+const respond = (data = {}, statusCode = 200, opts = {}) => {
+  return {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+    statusCode,
+    ...opts,
+  };
+};
+
 exports.handler = async function (event, context) {
   try {
     const data = event.body ? JSON.parse(event.body) : null;
@@ -45,6 +56,10 @@ exports.handler = async function (event, context) {
             produceDelay
             saleDelay
             qtyAvailable
+            currency {
+              symbol
+              rate
+            }
           }
         }
       `,
@@ -52,12 +67,9 @@ exports.handler = async function (event, context) {
       );
       const product = results.data.productBySlug;
 
-      return {
-        statusCode: 200,
-        body: JSON.stringify({
-          product,
-        }),
-      };
+      return respond({
+        product,
+      });
     } else {
       const results = await _execGQL(`
         {
@@ -69,25 +81,19 @@ exports.handler = async function (event, context) {
             produceDelay
             saleDelay
             qtyAvailable
+            currency {
+              symbol
+              rate
+            }
           }
         }
       `);
       const products = results.data.allProducts;
 
-      return {
-        statusCode: 200,
-        body: JSON.stringify({
-          products,
-        }),
-      };
+      return respond({ products });
     }
   } catch (error) {
     console.log('ERROR CAUGHT:', error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        error: 'Request failed',
-      }),
-    };
+    return respond({ error: 'Request failed' }, 500);
   }
 };

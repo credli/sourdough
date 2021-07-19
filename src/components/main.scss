@@ -27,6 +27,7 @@ $theme-colors: (
   secondary: $offwhite,
   light: $offwhite,
   black: $offblack,
+  danger: $danger,
 );
 
 @import '~bootstrap/scss/utilities';

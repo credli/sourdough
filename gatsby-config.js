@@ -33,6 +33,9 @@ module.exports = {
       lng: 35.624774325636075,
     },
   },
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     {
       resolve: `gatsby-source-wordpress`,

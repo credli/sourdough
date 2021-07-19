@@ -1,18 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'react-bootstrap';
-import { InventoryContext } from '../../context/InventoryProvider';
 
-function ProductPrice({ sku, loading }) {
+import { InventoryContext } from '../../context/InventoryProvider';
+import CurrencyFormatter from '../CurrencyFormatter';
+
+function ProductPrice({ sku, loadingEl }) {
   return (
     <InventoryContext.Consumer>
-      {({ getProduct, loading: invLoading }) => {
-        if (invLoading) {
-          return <>{loading ? loading : <Spinner />}</>;
+      {({ getProduct, inventory, loading }) => {
+        if (loading) {
+          return <>{loadingEl ? loadingEl : <Spinner />}</>;
         }
-        const product = getProduct(sku);
+        const product = getProduct(sku, inventory);
         return (
-          <>{product ? `LBP ${product.listPrice.toLocaleString()}` : 'N/A'}</>
+          <>
+            {product ? (
+              <CurrencyFormatter
+                currency={product.currency.symbol}
+                amount={product.listPrice}
+              />
+            ) : (
+              'N/A'
+            )}
+          </>
         );
       }}
     </InventoryContext.Consumer>
@@ -21,7 +32,7 @@ function ProductPrice({ sku, loading }) {
 
 ProductPrice.propTypes = {
   sku: PropTypes.string.isRequired,
-  loading: PropTypes.node,
+  loadingEl: PropTypes.node,
 };
 
 export default ProductPrice;

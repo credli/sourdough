@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -59,7 +59,7 @@ export default function Layout({ children }) {
       <header className={header}>
         <NavBar />
       </header>
-      {/* {data.settingsJson.announcement.visible && (
+      {data.settingsJson.announcement.visible && (
         <Alert
           className='text-center mb-0'
           variant={data.settingsJson.announcement.theme}
@@ -70,7 +70,7 @@ export default function Layout({ children }) {
             }}
           />
         </Alert>
-      )} */}
+      )}
       <main className={main}>{children}</main>
       <footer className={footer}>
         <Footer />
