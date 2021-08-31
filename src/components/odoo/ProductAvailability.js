@@ -9,10 +9,10 @@ import { badge } from './ProductAvailability.module.scss';
 function ProductAvailability({ sku, className = '' }) {
   return (
     <InventoryContext.Consumer>
-      {({ getProduct, inventory, loading }) => {
-        const product = getProduct(sku, inventory);
+      {({ getProduct, loading }) => {
+        const product = getProduct(sku);
         if (!product) return null;
-        const outOfStock = product.qtyAvailable < 1;
+        const outOfStock = product.qty_available < 1;
 
         return (
           outOfStock && (

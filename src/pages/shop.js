@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import _ from 'lodash';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { Col, Row, Container, Breadcrumb } from 'react-bootstrap';
 
@@ -10,7 +11,7 @@ import ProductGrid from '../components/shop/ProductGrid';
 function ShopPage({ location }) {
   const data = useStaticQuery(graphql`
     {
-      placeholderImage: file(relativePath: { eq: "product-placeholder.webp" }) {
+      placeholderImage: file(relativePath: { eq: "product-placeholder.jpg" }) {
         childImageSharp {
           gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
         }
@@ -24,65 +25,68 @@ function ShopPage({ location }) {
             slug
             name
             count
+            menuOrder
           }
         }
       }
-      products: allWpProduct(sort: { fields: [menuOrder], order: [ASC] }) {
-        edges {
-          node {
-            __typename
-            ... on WpSimpleProduct {
-              productCategories {
-                nodes {
-                  name
-                  slug
-                }
-              }
-              slug
-              sku
-              name
-              price
-              salePrice
-              image {
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+      groupedProducts: allWpProduct(
+        sort: { fields: [menuOrder], order: [ASC] }
+      ) {
+        group(field: productCategories___nodes___name) {
+          fieldValue
+          edges {
+            node {
+              __typename
+              ... on WpSimpleProduct {
+                productCategories {
+                  nodes {
+                    name
+                    slug
+                    menuOrder
                   }
                 }
-              }
-            }
-            ... on WpVariableProduct {
-              productCategories {
-                nodes {
-                  name
-                  slug
-                }
-              }
-              slug
-              sku
-              name
-              variations {
-                nodes {
-                  sku
-                  name
-                  price
-                  salePrice
-                  image {
-                    altText
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-                      }
+                slug
+                sku
+                name
+                image {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
                     }
                   }
                 }
               }
-              image {
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+              ... on WpVariableProduct {
+                productCategories {
+                  nodes {
+                    name
+                    slug
+                  }
+                }
+                slug
+                sku
+                name
+                variations {
+                  nodes {
+                    sku
+                    name
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+                        }
+                      }
+                    }
+                  }
+                }
+                image {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+                    }
                   }
                 }
               }
@@ -93,18 +97,24 @@ function ShopPage({ location }) {
     }
   `);
 
+  const groupedProducts = useMemo(() => {
+    const grouped = data.groupedProducts.group.map((g) => {
+      const matchedCategory = data.categories.edges.find(
+        (e) => e.node.name === g.fieldValue
+      );
+      g.menuOrder = matchedCategory.node.menuOrder;
+      return g;
+    });
+    return _.sortBy(grouped, 'menuOrder');
+  }, [data.categories, data.groupedProducts]);
+
   const params = new URLSearchParams(location.search);
   const selectedCategory = params.get('category');
 
   return (
     <Layout>
-      <Seo title='' description='' />
+      <Seo title='Shop Products' description='Place your order today' />
       <Container>
-        <Row className='mt-4'>
-          <Col>
-            <h1 className='display-2'>Shop</h1>
-          </Col>
-        </Row>
         <Row>
           <Col>
             <Breadcrumb>
@@ -139,10 +149,16 @@ function ShopPage({ location }) {
             />
           </Col>
           <Col lg={9}>
-            <ProductGrid
-              products={data.products.edges.map((e) => e.node)}
-              placeholderImage={data.placeholderImage}
-            />
+            {groupedProducts.map((grp, grpIdx) => (
+              <ProductGrid
+                key={grpIdx}
+                category={grp.fieldValue}
+                products={grp.edges.map((e) => e.node)}
+                placeholderImage={
+                  data.placeholderImage.childImageSharp.gatsbyImageData
+                }
+              />
+            ))}
           </Col>
         </Row>
       </Container>

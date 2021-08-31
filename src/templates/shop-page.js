@@ -10,13 +10,11 @@ import ProductGrid from '../components/shop/ProductGrid';
 function ShopPage({ data, pageContext: { category } }) {
   return (
     <Layout>
-      <Seo title='' description='' />
+      <Seo
+        title={`${category.name} Collection`}
+        description={`Place your order for ${category.name} today`}
+      />
       <Container>
-        <Row className='mt-4'>
-          <Col>
-            <h1 className='display-2'>Shop</h1>
-          </Col>
-        </Row>
         <Row>
           <Col>
             <Breadcrumb>
@@ -47,11 +45,12 @@ function ShopPage({ data, pageContext: { category } }) {
           <Col lg={3}>
             <CategorySelector
               categories={data.categories.edges.map((e) => e.node)}
-              selectedCategory={category}
+              selectedCategory={category.slug}
             />
           </Col>
           <Col lg={9}>
             <ProductGrid
+              category={category.name}
               products={data.products.edges.map((e) => e.node)}
               placeholderImage={
                 data.placeholderImage.childImageSharp.gatsbyImageData
@@ -67,8 +66,8 @@ function ShopPage({ data, pageContext: { category } }) {
 export default ShopPage;
 
 export const query = graphql`
-  query ShopPageQuery($category: String!) {
-    placeholderImage: file(relativePath: { eq: "product-placeholder.webp" }) {
+  query ShopPageQuery($slug: String!) {
+    placeholderImage: file(relativePath: { eq: "product-placeholder.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
       }
@@ -87,9 +86,7 @@ export const query = graphql`
     }
     products: allWpProduct(
       filter: {
-        productCategories: {
-          nodes: { elemMatch: { slug: { in: [$category] } } }
-        }
+        productCategories: { nodes: { elemMatch: { slug: { in: [$slug] } } } }
       }
       sort: { fields: [menuOrder], order: [ASC] }
     ) {

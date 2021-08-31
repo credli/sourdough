@@ -1,21 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { Row, Col, Spinner } from 'react-bootstrap';
 
-import ProductPrice from '../odoo/ProductPrice';
+// import ProductPrice from '../odoo/ProductPrice';
 import ProductAvailability from '../odoo/ProductAvailability';
 import AttributesTable from './AttributesTable';
 import Addons from './Addons';
 import AddToCart from '../odoo/AddToCart';
+import { InventoryContext } from '../../context/InventoryProvider';
 
-import { imageWrapper, availabilityBadge } from './ProductDetails.module.scss';
+import {
+  imageWrapper,
+  availabilityBadge,
+  variationImage,
+  selected,
+} from './ProductDetails.module.scss';
 
 function ProductDetails({ product, addons }) {
+  const { getProduct, loading, error } = useContext(InventoryContext);
   const isVariable = product.__typename === 'WpVariableProduct';
   const [selectedVariant, setSelectedVariant] = useState(
     isVariable ? product.variations.nodes[0] : product
   );
+
+  const products = useMemo(() => {
+    if (product.__typename === 'WpVariableProduct') {
+      return product.variations.nodes.map((n) => n);
+    }
+    return [product];
+  }, [product]);
+
+  const inventoryProduct = useMemo(() => {
+    return getProduct(selectedVariant.sku);
+  }, [selectedVariant, loading]);
+
+  const handleProductVariationClick = (e, product) => {
+    setSelectedVariant(product);
+  };
 
   return (
     <>
@@ -23,32 +45,52 @@ function ProductDetails({ product, addons }) {
         <Col className='d-flex align-items-center justify-content-between'>
           <h1 className='display-2'>{selectedVariant.name}</h1>
           <h2 className='text-muted display-6'>
-            <ProductPrice
-              sku={selectedVariant.sku}
-              loadingEl={
-                <Spinner animation='border' role='status'>
-                  <span className='visually-hidden'>Loading...</span>
-                </Spinner>
-              }
-            />
+            {loading ? (
+              <Spinner />
+            ) : (
+              inventoryProduct && inventoryProduct.price_formatted
+            )}
           </h2>
         </Col>
       </Row>
 
-      <Row>
+      <Row className='mb-4'>
         <Col lg={5} className='order-1'>
-          <div className={imageWrapper}>
-            <GatsbyImage
-              image={
-                selectedVariant.image.localFile.childImageSharp.gatsbyImageData
-              }
-              alt={selectedVariant.image.altText}
-            />
-            <ProductAvailability
-              className={availabilityBadge}
-              sku={selectedVariant.sku}
-            />
-          </div>
+          <Row className='mb-2'>
+            <Col>
+              <div className={imageWrapper}>
+                <GatsbyImage
+                  image={
+                    selectedVariant.image.localFile.childImageSharp
+                      .gatsbyImageData
+                  }
+                  alt={selectedVariant.image.altText}
+                />
+                <ProductAvailability
+                  className={availabilityBadge}
+                  sku={selectedVariant.sku}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row className='g-2 row-cols-3'>
+            {products.length > 1 &&
+              products.map((p, idx) => (
+                <Col key={idx}>
+                  <div
+                    onClick={(e) => handleProductVariationClick(e, p)}
+                    className={`${variationImage} ${
+                      p.sku === selectedVariant.sku ? selected : ''
+                    }`}
+                  >
+                    <GatsbyImage
+                      image={p.image.localFile.childImageSharp.gatsbyImageData}
+                      alt={p.image.altText || p.name}
+                    />
+                  </div>
+                </Col>
+              ))}
+          </Row>
         </Col>
 
         <Col lg={5} className='order-3 order-lg-2'>
@@ -65,8 +107,8 @@ function ProductDetails({ product, addons }) {
       </Row>
 
       {product.attributes && (
-        <Row>
-          <Col className='mt-3'>
+        <Row className='mb-4'>
+          <Col>
             <AttributesTable attributes={product.attributes.nodes} />
           </Col>
         </Row>

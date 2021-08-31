@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Row } from 'react-bootstrap';
 
 import ProductItem from './ProductItem';
 
-function ProductGrid({ products, placeholderImage }) {
+function ProductGrid({ category, products, placeholderImage }) {
   return (
-    <Row>
+    <Row className='mb-5'>
+      {category && <h2 className='display-5 mb-4'>{category}</h2>}
       {products.map((product, idx) => {
         const defaultSku =
           product.__typename === 'WpVariableProduct'
             ? product.variations.nodes[0].sku
             : product.sku;
-
+        console.log(defaultSku, product);
         return (
           <ProductItem
             key={idx}

@@ -4,13 +4,13 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { Col } from 'react-bootstrap';
 
-import ProductPrice from '../odoo/ProductPrice';
+// import ProductPrice from '../odoo/ProductPrice';
 import { imageContainer } from './ProductItem.module.scss';
 
 const ProductItem = ({
   sku,
   name,
-  price,
+  price_formatted,
   categorySlug,
   imageData,
   altText,
@@ -21,6 +21,7 @@ const ProductItem = ({
     <Link
       className='text-reset text-decoration-none'
       to={`/shop/${categorySlug}/${slug}`}
+      state={{ from: 'shop' }}
     >
       <div className={imageContainer}>
         {imageData ? (
@@ -31,9 +32,7 @@ const ProductItem = ({
       </div>
       <div className='mb-4'>
         <h3 className='mb-0 mt-2'>{name}</h3>
-        <span className='text-muted'>
-          <ProductPrice sku={sku} />
-        </span>
+        <span className='text-muted'>{price_formatted}</span>
       </div>
     </Link>
   </Col>

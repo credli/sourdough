@@ -23,7 +23,7 @@ function Categories({ categories }) {
 
           return (
             <Col key={index} lg={3}>
-              <Link to={`/shop?category=${category.slug}`}>
+              <Link to={`/shop/${category.slug}`}>
                 <div className={categoryBox}>
                   <BgImage
                     className={categoryImage}

@@ -14,7 +14,7 @@ module.exports = {
     description:
       'Sourdough is a community-based artisan bakery that specializes in baking artisanal bread and pastry and delivering great experiences, located in Broumana - Lebanon. Through careful preparation and long fermentation, we produce authentic bread that is delicious and healthy.',
     phone: '+96124961223',
-    mobile: '+96176667407',
+    mobile: '+96181141833',
     email: 'hello@sourdough.me',
     social: {
       instagram: 'http://instagram.com/sourdough_lebanon',
@@ -34,7 +34,7 @@ module.exports = {
     },
   },
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
   plugins: [
     {
@@ -210,8 +210,42 @@ module.exports = {
     // },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Sourdough Bakery`,
+        short_name: `Sourdough`,
+        description: `Don't wait in line! Pre-order our products and collect loyalty points.`,
+        lang: `en`,
+        start_url: `/`,
+        background_color: `#1a1919`,
+        theme_color: `#ffd474`,
+        display: `standalone`,
+        icon: `static/img/icon.png`,
+        cache_busting_mode: `query`,
+        crossOrigin: `use-credentials`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ['**/icon-path*'],
+        },
+      },
+    },
   ],
   developMiddleware: (app) => {
+    app.use(
+      '/api/',
+      createProxyMiddleware({
+        target: 'http://localhost:5000',
+        pathRewrite: {
+          '/api/': '',
+        },
+      })
+    );
+
     app.use(
       '/.netlify/functions/',
       createProxyMiddleware({

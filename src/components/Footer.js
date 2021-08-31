@@ -62,9 +62,15 @@ export default function Footer() {
               </li>
               <li>
                 <i className='bi-geo-alt me-2' />
-                <span>
-                  {street}, {city}, {region} - {country}
-                </span>
+                <a
+                  href={`https://www.google.com/maps?cid=14784710740251044164&hl=en&authuser=1&_ga=2.232621279.1382046460.1630419589-1416947389.1629562920`}
+                  alt='Sourdough Bakery - Broumana'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  {street}, {city}, {region} - {country}{' '}
+                  <i className='ms-1 bi-box-arrow-up-right' />
+                </a>
               </li>
             </ul>
           </Col>

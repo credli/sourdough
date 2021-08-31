@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-
-import { Breadcrumb, Container, Row, Col } from 'react-bootstrap';
+import { Link, graphql, navigate } from 'gatsby';
+import { Breadcrumb, Container, Row, Col, Button } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 import ProductDetails from '../components/shop/ProductDetails';
 
-const ProductDetailsPage = ({ data }) => {
+const ProductDetailsPage = ({ data, location }) => {
   const productCategory = data.product.productCategories.nodes[0];
+  const showBackLink = location.state && location.state.from;
 
   return (
     <Layout>
@@ -20,27 +20,41 @@ const ProductDetailsPage = ({ data }) => {
       <Container>
         <Row>
           <Col className='mt-3'>
-            <Breadcrumb>
-              <Breadcrumb.Item
-                linkAs={Link}
-                linkProps={{
-                  to: `/shop`,
-                  className: 'text-reset text-decoration-none',
+            {showBackLink ? (
+              <a
+                href='#'
+                className='text-reset text-decoration-none'
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(-1);
                 }}
               >
-                Shop
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
-                linkAs={Link}
-                linkProps={{
-                  to: `/shop/${productCategory.slug}`,
-                  className: 'text-reset text-decoration-none',
-                }}
-              >
-                {productCategory.name}
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>{data.product.name}</Breadcrumb.Item>
-            </Breadcrumb>
+                <i className='bi-chevron-left me-1' />
+                Back
+              </a>
+            ) : (
+              <Breadcrumb>
+                <Breadcrumb.Item
+                  linkAs={Link}
+                  linkProps={{
+                    to: `/shop`,
+                    className: 'text-reset text-decoration-none',
+                  }}
+                >
+                  Shop
+                </Breadcrumb.Item>
+                <Breadcrumb.Item
+                  linkAs={Link}
+                  linkProps={{
+                    to: `/shop/${productCategory.slug}`,
+                    className: 'text-reset text-decoration-none',
+                  }}
+                >
+                  {productCategory.name}
+                </Breadcrumb.Item>
+                <Breadcrumb.Item active>{data.product.name}</Breadcrumb.Item>
+              </Breadcrumb>
+            )}
             <hr className='mb-0' />
           </Col>
         </Row>

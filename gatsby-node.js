@@ -32,6 +32,7 @@ exports.createPages = async (args) => {
         edges {
           node {
             slug
+            name
           }
         }
       }
@@ -123,7 +124,8 @@ exports.createPages = async (args) => {
       path: `/shop/${edge.node.slug}`,
       component: path.resolve(`src/templates/shop-page.js`),
       context: {
-        category: edge.node.slug,
+        slug: edge.node.slug,
+        category: edge.node,
       },
     });
   });

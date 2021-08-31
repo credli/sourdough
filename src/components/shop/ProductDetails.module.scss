@@ -1,3 +1,5 @@
+@import '../main.scss';
+
 .image-wrapper {
   position: relative;
 }
@@ -6,4 +8,15 @@
   position: absolute;
   top: 10px;
   left: 10px;
+}
+
+.variation-image {
+  // border: 4px $primary solid;
+  cursor: pointer;
+
+  &.selected {
+    outline-style: solid;
+    outline-color: $primary;
+    outline-width: 4px;
+  }
 }
