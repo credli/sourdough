@@ -105,26 +105,17 @@ export const query = graphql`
         }
       }
     }
-    categories: allWpProductCategory(
-      sort: { fields: [menuOrder], order: [ASC] }
-      filter: { slug: { ne: "uncategorized" } }
-    ) {
+    categories: allCategoriesJson(sort: { fields: [menuOrder], order: [ASC] }) {
       edges {
         node {
           slug
           name
           image {
-            altText
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  layout: FIXED
-                  placeholder: BLURRED
-                  height: 400
-                )
-              }
+            childImageSharp {
+              gatsbyImageData(layout: FIXED, placeholder: BLURRED, height: 400)
             }
           }
+          menuOrder
         }
       }
     }

@@ -38,75 +38,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        verbose: true,
-        url: WP_GRAPHQL_ENDPOINT,
-        develop: {
-          hardCacheMediaFiles: true,
-          hardCacheData: true,
-        },
-        type: {
-          Menu: {
-            exclude: true,
-          },
-          MenuItem: {
-            exclude: true,
-          },
-          Comment: {
-            exclude: true,
-          },
-          User: {
-            exclude: true,
-          },
-          UserRole: {
-            exclude: true,
-          },
-          Page: {
-            exclude: true,
-          },
-          Post: {
-            exclude: true,
-          },
-          Category: {
-            exclude: true,
-          },
-          Order: {
-            exclude: true,
-          },
-          Coupon: {
-            exclude: true,
-          },
-          Customer: {
-            exclude: true,
-          },
-          PostFormat: {
-            exclude: true,
-          },
-          ContentType: {
-            exclude: true,
-          },
-          Refund: {
-            exclude: true,
-          },
-          Taxonomy: {
-            exclude: true,
-          },
-        },
-        schema: {
-          timeout: 120000,
-        },
-      },
-    },
-    {
-      resolve: `gatsby-source-graphql`,
-      options: {
-        typeName: 'GQL',
-        fieldName: 'gql',
-        url: WP_GRAPHQL_ENDPOINT,
-      },
-    },
-    {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -114,9 +45,6 @@ module.exports = {
         name: 'images',
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -136,12 +64,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        printRejected: true,
-      },
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
@@ -155,6 +77,27 @@ module.exports = {
       options: {
         path: `${__dirname}/content/settings`,
         name: `settings`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/categories`,
+        name: `categories`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/products`,
+        name: `products`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/product-options`,
+        name: `productOptions`,
       },
     },
     {
@@ -234,6 +177,9 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
   ],
   developMiddleware: (app) => {
     app.use(

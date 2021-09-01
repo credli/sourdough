@@ -34,7 +34,6 @@
     "gatsby-plugin-netlify": "^3.9.0",
     "gatsby-plugin-netlify-cms": "^5.9.0",
     "gatsby-plugin-offline": "^4.12.0",
-    "gatsby-plugin-purgecss": "^6.0.2",
     "gatsby-plugin-react-helmet": "^4.9.0",
     "gatsby-plugin-sass": "^4.9.0",
     "gatsby-plugin-sharp": "^3.9.0",

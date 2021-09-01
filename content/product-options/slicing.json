@@ -1,0 +1,20 @@
+{
+  "templateKey": "productOption",
+  "slug": "slicing",
+  "type": "radio",
+  "name": "Slicing",
+  "required": true,
+  "description": "Bread can be cut into tartine slices. Also perfect for freezer storage!",
+  "options": [
+    {
+      "label": "Unsliced",
+      "value": "unsliced",
+      "selected": true
+    },
+    {
+      "label": "Sliced (16mm)",
+      "value": "sliced",
+      "selected": false
+    }
+  ]
+}

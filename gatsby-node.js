@@ -3,7 +3,7 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const Slugify = require('slugify');
 
-const slugify = (s) => Slugify(s, { lower: true, remove: /[*+~.()'"!:@]/g });
+const slugify = (s) => Slugify(s, { lower: true, remove: /[*+~.()''!:@]/g });
 
 exports.createPages = async (args) => {
   const { actions, graphql } = args;
@@ -25,8 +25,7 @@ exports.createPages = async (args) => {
           }
         }
       }
-      categories: allWpProductCategory(
-        filter: { slug: { ne: "uncategorized" } }
+      categories: allCategoriesJson(
         sort: { fields: [menuOrder], order: [ASC] }
       ) {
         edges {
@@ -36,33 +35,12 @@ exports.createPages = async (args) => {
           }
         }
       }
-      products: allWpProduct(
-        filter: {
-          productCategories: {
-            nodes: { elemMatch: { slug: { nin: ["uncategorized"] } } }
-          }
-        }
-      ) {
-        nodes {
-          ... on WpSimpleProduct {
-            productCategories {
-              nodes {
-                name
-                slug
-              }
-            }
+      products: allProductsJson {
+        edges {
+          node {
             slug
-            databaseId
-          }
-          ... on WpVariableProduct {
-            productCategories {
-              nodes {
-                name
-                slug
-              }
-            }
-            slug
-            databaseId
+            name
+            categories
           }
         }
       }
@@ -74,12 +52,8 @@ exports.createPages = async (args) => {
     return Promise.reject(result.errors);
   }
 
-  const pages = result.data.allMarkdownRemark.edges;
-  const categories = result.data.categories.edges;
-  const products = result.data.products.nodes;
-
   // pages with markdown support
-  pages.forEach((edge) => {
+  result.data.allMarkdownRemark.edges.forEach((edge) => {
     const id = edge.node.id;
     createPage({
       path: edge.node.fields.slug,
@@ -97,7 +71,7 @@ exports.createPages = async (args) => {
   // Tag pages:
   let tags = [];
   // Iterate through each page, putting all found tags into `tags`
-  pages.forEach((edge) => {
+  result.data.allMarkdownRemark.edges.forEach((edge) => {
     if (_.get(edge, `node.frontmatter.tags`)) {
       tags = tags.concat(edge.node.frontmatter.tags);
     }
@@ -119,45 +93,33 @@ exports.createPages = async (args) => {
   });
 
   // shop page (categories)
-  categories.forEach((edge) => {
+  result.data.categories.edges.forEach((edge) => {
     createPage({
       path: `/shop/${edge.node.slug}`,
       component: path.resolve(`src/templates/shop-page.js`),
       context: {
         slug: edge.node.slug,
-        category: edge.node,
       },
     });
   });
 
   // product details
-  products.forEach((node) => {
-    const productCategories = node.productCategories.nodes.map((node) => node);
-    createPage({
-      path: `/shop/${productCategories[0].slug}/${node.slug}`,
-      component: path.resolve(`src/templates/product-details.js`),
-      context: {
-        slug: node.slug,
-        databaseId: node.databaseId,
-        productCategories,
-      },
+  result.data.products.edges.forEach((edge) => {
+    edge.node.categories.forEach((category) => {
+      createPage({
+        path: `/shop/${category}/${edge.node.slug}`,
+        component: path.resolve(`src/templates/product-details.js`),
+        context: {
+          slug: edge.node.slug,
+          category,
+        },
+      });
     });
   });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-
-  // TODO: remove, not needed since we no longer use json for ecommerce
-  // if (node.internal.type.indexOf('Json') > -1) {
-  //   const value = slugify(node.name);
-  //   createNodeField({
-  //     name: `slug`,
-  //     node,
-  //     value,
-  //   });
-  // }
-
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
     createNodeField({
@@ -166,4 +128,45 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     });
   }
+};
+
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    CategoriesJson: {
+      count: {
+        type: 'Int',
+        resolve: async (source, args, context, info) => {
+          const result = await context.nodeModel.runQuery({
+            query: {
+              filter: {
+                templateKey: { eq: 'product' },
+                categories: { in: [source.slug] },
+              },
+            },
+            type: 'ProductsJson',
+          });
+          return result.length;
+        },
+      },
+    },
+  };
+  createResolvers(resolvers);
+};
+
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    # Hint: @link "by" should be the primary key of the linked entity (ex. products),
+    # "from" must be foreign key in current entity (ex. relatedProducts.product)
+
+    type ProductsJson implements Node {
+      categoriesArray: [CategoriesJson] @link(by: "slug", from: "categories")
+      productOptionsArray: [ProductOptionsJson] @link(by: "slug", from: "options")
+    }
+
+    type CategoriesJson implements Node {
+      productsArray: [ProductsJson] @link(by: "categories", from: "slug")
+    }
+  `;
+  createTypes(typeDefs);
 };

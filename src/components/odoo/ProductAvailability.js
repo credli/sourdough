@@ -6,11 +6,11 @@ import { InventoryContext } from '../../context/InventoryProvider';
 
 import { badge } from './ProductAvailability.module.scss';
 
-function ProductAvailability({ sku, className = '' }) {
+function ProductAvailability({ slug, className = '' }) {
   return (
     <InventoryContext.Consumer>
       {({ getProduct, loading }) => {
-        const product = getProduct(sku);
+        const product = getProduct(slug);
         if (!product) return null;
         const outOfStock = product.qty_available < 1;
 
@@ -29,7 +29,7 @@ function ProductAvailability({ sku, className = '' }) {
 }
 
 ProductAvailability.propTypes = {
-  sku: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 

@@ -18,7 +18,7 @@ function Categories({ categories }) {
         .map((e) => e.node)
         .map((category, index) => {
           const pluginImage = getImage(
-            category.image.localFile.childImageSharp.gatsbyImageData
+            category.image.childImageSharp.gatsbyImageData
           );
 
           return (

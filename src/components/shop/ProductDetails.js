@@ -6,7 +6,7 @@ import { Row, Col, Spinner } from 'react-bootstrap';
 // import ProductPrice from '../odoo/ProductPrice';
 import ProductAvailability from '../odoo/ProductAvailability';
 import AttributesTable from './AttributesTable';
-import Addons from './Addons';
+import ProductOptions, { ProductOptionsPropTypes } from './ProductOptions';
 import AddToCart from '../odoo/AddToCart';
 import { InventoryContext } from '../../context/InventoryProvider';
 
@@ -17,23 +17,25 @@ import {
   selected,
 } from './ProductDetails.module.scss';
 
-function ProductDetails({ product, addons }) {
+function ProductDetails({ product }) {
   const { getProduct, loading, error } = useContext(InventoryContext);
-  const isVariable = product.__typename === 'WpVariableProduct';
+  const hasVariants = product.variants?.length > 0;
   const [selectedVariant, setSelectedVariant] = useState(
-    isVariable ? product.variations.nodes[0] : product
+    hasVariants ? product.variants[0] : product
   );
 
   const products = useMemo(() => {
-    if (product.__typename === 'WpVariableProduct') {
-      return product.variations.nodes.map((n) => n);
+    if (hasVariants) {
+      return product.variants;
     }
     return [product];
-  }, [product]);
+  }, [hasVariants, product]);
 
   const inventoryProduct = useMemo(() => {
-    return getProduct(selectedVariant.sku);
-  }, [selectedVariant, loading]);
+    if (!loading) {
+      return getProduct(selectedVariant.slug);
+    }
+  }, [selectedVariant, getProduct, loading]);
 
   const handleProductVariationClick = (e, product) => {
     setSelectedVariant(product);
@@ -60,15 +62,12 @@ function ProductDetails({ product, addons }) {
             <Col>
               <div className={imageWrapper}>
                 <GatsbyImage
-                  image={
-                    selectedVariant.image.localFile.childImageSharp
-                      .gatsbyImageData
-                  }
-                  alt={selectedVariant.image.altText}
+                  image={selectedVariant.image.childImageSharp.gatsbyImageData}
+                  alt={selectedVariant.name}
                 />
                 <ProductAvailability
                   className={availabilityBadge}
-                  sku={selectedVariant.sku}
+                  slug={selectedVariant.slug}
                 />
               </div>
             </Col>
@@ -80,12 +79,12 @@ function ProductDetails({ product, addons }) {
                   <div
                     onClick={(e) => handleProductVariationClick(e, p)}
                     className={`${variationImage} ${
-                      p.sku === selectedVariant.sku ? selected : ''
+                      p.slug === selectedVariant.slug ? selected : ''
                     }`}
                   >
                     <GatsbyImage
-                      image={p.image.localFile.childImageSharp.gatsbyImageData}
-                      alt={p.image.altText || p.name}
+                      image={p.image.childImageSharp.gatsbyImageData}
+                      alt={p.name}
                     />
                   </div>
                 </Col>
@@ -94,22 +93,32 @@ function ProductDetails({ product, addons }) {
         </Col>
 
         <Col lg={5} className='order-3 order-lg-2'>
-          <div
-            className='lead'
-            dangerouslySetInnerHTML={{ __html: product.description }}
-          />
-          <Addons addons={addons} />
+          <Row className='mb-4'>
+            <Col>
+              <div
+                className='lead'
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
+            </Col>
+          </Row>
+          {product.productOptionsArray?.length > 0 && (
+            <Row>
+              <Col>
+                <ProductOptions options={product.productOptionsArray} />
+              </Col>
+            </Row>
+          )}
         </Col>
 
         <Col lg={2} className='order-2 order-lg-3 my-3 my-lg-0'>
-          <AddToCart sku={selectedVariant.sku} />
+          <AddToCart slug={selectedVariant.slug} />
         </Col>
       </Row>
 
       {product.attributes && (
         <Row className='mb-4'>
           <Col>
-            <AttributesTable attributes={product.attributes.nodes} />
+            <AttributesTable attributes={product.attributes} />
           </Col>
         </Row>
       )}
@@ -119,52 +128,26 @@ function ProductDetails({ product, addons }) {
 
 const imagePropTypes = {
   image: PropTypes.shape({
-    altText: PropTypes.string,
-    localFile: PropTypes.shape({
-      childImageSharp: PropTypes.shape({
-        gatsbyImageData: PropTypes.object.isRequired,
-      }).isRequired,
+    childImageSharp: PropTypes.shape({
+      gatsbyImageData: PropTypes.object.isRequired,
     }).isRequired,
-  }).isRequired,
+  }).isRequired.isRequired,
 };
 
 ProductDetails.propTypes = {
   product: PropTypes.shape({
-    __typename: PropTypes.oneOf(['WpSimpleProduct', 'WpVariableProduct'])
-      .isRequired,
-    sku: (props, propName, componentName) => {
-      // only required if its a WpSimpleProduct
-      if (
-        props.__typename === 'WpSimpleProduct' &&
-        (props[propName] === undefined || typeof props[propName] !== 'string')
-      ) {
-        return new Error('sku is required for WpSimpleProduct');
-      }
-    },
+    slug: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     ...imagePropTypes,
-    variations: PropTypes.shape({
-      nodes: PropTypes.arrayOf(
-        PropTypes.shape({
-          sku: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-          ...imagePropTypes,
-        })
-      ),
-    }),
+    variants: PropTypes.arrayOf(
+      PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        ...imagePropTypes,
+      })
+    ),
   }).isRequired,
-  addons: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      options: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          default: PropTypes.bool.isRequired,
-        })
-      ).isRequired,
-    })
-  ),
+  productOptionsArray: ProductOptionsPropTypes,
 };
 
 export default ProductDetails;

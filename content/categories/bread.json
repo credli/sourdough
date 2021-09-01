@@ -1,0 +1,8 @@
+{
+  "templateKey": "category",
+  "slug": "bread",
+  "name": "Bread",
+  "description": "Both kids and grownups love it, our artisan line of thoroughly-fermented organic sourdough breads that are made from freshly milled flour giving it our trademark distinct flavor. High nutritional value, they are suitable for people with gluten-intolerance.",
+  "menuOrder": 1,
+  "image": "images/bread.jpg"
+}

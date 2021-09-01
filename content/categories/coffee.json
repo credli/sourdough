@@ -1,0 +1,8 @@
+{
+  "templateKey": "category",
+  "slug": "coffee",
+  "description": "Try out our artisanal organic coffee, freshly oven roasted everyday.",
+  "name": "Coffee",
+  "menuOrder": 3,
+  "image": "images/coffee.jpg"
+}

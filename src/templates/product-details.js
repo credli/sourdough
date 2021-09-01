@@ -7,7 +7,7 @@ import Seo from '../components/Seo';
 import ProductDetails from '../components/shop/ProductDetails';
 
 const ProductDetailsPage = ({ data, location }) => {
-  const productCategory = data.product.productCategories.nodes[0];
+  const mainCategory = data.product.categoriesArray[0];
   const showBackLink = location.state && location.state.from;
 
   return (
@@ -15,11 +15,11 @@ const ProductDetailsPage = ({ data, location }) => {
       <Seo
         title={data.product.name}
         description={data.product.description}
-        image={data.product.image.localFile}
+        image={data.product.image}
       />
       <Container>
-        <Row>
-          <Col className='mt-3'>
+        <Row className='mt-3'>
+          <Col>
             {showBackLink ? (
               <a
                 href='#'
@@ -46,11 +46,11 @@ const ProductDetailsPage = ({ data, location }) => {
                 <Breadcrumb.Item
                   linkAs={Link}
                   linkProps={{
-                    to: `/shop/${productCategory.slug}`,
+                    to: `/shop/${mainCategory.slug}`,
                     className: 'text-reset text-decoration-none',
                   }}
                 >
-                  {productCategory.name}
+                  {mainCategory.name}
                 </Breadcrumb.Item>
                 <Breadcrumb.Item active>{data.product.name}</Breadcrumb.Item>
               </Breadcrumb>
@@ -59,10 +59,7 @@ const ProductDetailsPage = ({ data, location }) => {
           </Col>
         </Row>
 
-        <ProductDetails
-          product={data.product}
-          addons={data.gql.product.addons}
-        />
+        <ProductDetails product={data.product} />
       </Container>
     </Layout>
   );
@@ -71,95 +68,51 @@ const ProductDetailsPage = ({ data, location }) => {
 export default ProductDetailsPage;
 
 export const query = graphql`
-  query ProductPageTemplate($slug: String!, $databaseId: ID!) {
-    gql {
-      product(id: $databaseId, idType: DATABASE_ID) {
-        addons {
-          controlType
-          id
-          description
-          label
-          options {
-            default
-            name
-          }
-          priority
-          required
-        }
-      }
-    }
-    product: wpProduct(slug: { eq: $slug }) {
-      __typename
-      databaseId
+  query ProductPageTemplate($slug: String!) {
+    product: productsJson(slug: { eq: $slug }) {
+      slug
       name
+      categoriesArray {
+        slug
+        name
+      }
       description
-      productCategories {
-        nodes {
-          name
-          slug
+      image {
+        childImageSharp {
+          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
         }
       }
-      productTags {
-        nodes {
-          name
-          slug
+      variants {
+        slug
+        name
+        image {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+          }
+        }
+      }
+      gallery {
+        title
+        image {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+          }
         }
       }
       attributes {
-        nodes {
-          ... on WpLocalProductAttribute {
-            name
-            options
-          }
-        }
+        title
+        details
       }
-      image {
-        altText
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              layout: CONSTRAINED
-              placeholder: BLURRED
-              aspectRatio: 1.5
-            )
-          }
-        }
-      }
-      galleryImages {
-        nodes {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                layout: CONSTRAINED
-                placeholder: BLURRED
-                aspectRatio: 1.5
-              )
-            }
-          }
-        }
-      }
-      ... on WpSimpleProduct {
-        sku
-      }
-      ... on WpVariableProduct {
-        variations {
-          nodes {
-            sku
-            name
-            image {
-              altText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    layout: CONSTRAINED
-                    placeholder: BLURRED
-                    aspectRatio: 1.5
-                  )
-                }
-              }
-            }
-          }
+      productOptionsArray {
+        slug
+        name
+        description
+        required
+        type
+        options {
+          label
+          value
+          selected
         }
       }
     }

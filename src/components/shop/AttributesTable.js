@@ -6,24 +6,22 @@ function AttributesTable({ attributes }) {
   return (
     <Table striped>
       <tbody>
-        {attributes
-          .filter((a) => !!a.name)
-          .map((attribute, idx) => (
-            <tr key={idx}>
-              <td className='fw-bold'>{attribute.name}</td>
-              <td>
-                {attribute.options.length > 1 ? (
-                  <ul className='mb-0 ps-3'>
-                    {attribute.options.map((opt, optIdx) => (
-                      <li key={optIdx}>{opt}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  attribute.options[0]
-                )}
-              </td>
-            </tr>
-          ))}
+        {attributes.map((attribute, idx) => (
+          <tr key={idx}>
+            <td className='fw-bold'>{attribute.title}</td>
+            <td>
+              {attribute.details.indexOf(' | ') > -1 ? (
+                <ul className='mb-0 ps-3'>
+                  {attribute.details.split(' | ').map((opt, optIdx) => (
+                    <li key={optIdx}>{opt}</li>
+                  ))}
+                </ul>
+              ) : (
+                attribute.details
+              )}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
@@ -32,8 +30,8 @@ function AttributesTable({ attributes }) {
 AttributesTable.propTypes = {
   attributes: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
-      options: PropTypes.arrayOf(PropTypes.string),
+      title: PropTypes.string,
+      details: PropTypes.string,
     })
   ),
 };

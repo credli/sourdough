@@ -8,7 +8,6 @@ import { Col } from 'react-bootstrap';
 import { imageContainer } from './ProductItem.module.scss';
 
 const ProductItem = ({
-  sku,
   name,
   price_formatted,
   categorySlug,
@@ -40,7 +39,6 @@ const ProductItem = ({
 
 ProductItem.propTypes = {
   slug: PropTypes.string.isRequired,
-  sku: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   categorySlug: PropTypes.string.isRequired,
   imageData: PropTypes.object,

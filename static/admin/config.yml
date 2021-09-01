@@ -5,7 +5,7 @@ backend:
 
 local_backend: true
 media_folder: static/img
-# public_folder: /img
+public_folder: static/img
 
 collections:
   - name: settings
@@ -233,3 +233,150 @@ collections:
       - { label: Country, name: country, widget: string }
       - { label: Visible, name: visible, widget: boolean }
       - { label: Body, name: body, widget: markdown }
+
+  - name: category
+    label: Categories
+    label_singular: Category
+    folder: content/categories
+    format: json
+    slug: '{{fields.slug}}'
+    path: '{{slug}}'
+    create: true
+    sortable_fields: ['menuOrder']
+    media_folder: 'images'
+    public_folder: ''
+    fields:
+      - { name: templateKey, widget: hidden, default: category }
+      - { name: slug, label: Slug }
+      - { name: name, label: Name }
+      - { name: description, label: Description, widget: text }
+      - { name: menuOrder, label: 'Menu Order', widget: number }
+      - { name: image, label: Image, widget: image }
+
+  - name: product
+    label: Products
+    label_singular: Product
+    folder: content/products
+    format: json
+    slug: '{{fields.slug}}'
+    path: '{{slug}}'
+    create: true
+    media_folder: 'images'
+    public_folder: ''
+    fields:
+      - { name: templateKey, widget: hidden, default: product }
+      - { name: name, label: Name }
+      - { name: slug, label: Slug }
+      - { name: description, label: Description, widget: markdown }
+      - {
+          name: categories,
+          label: Categories,
+          widget: relation,
+          collection: category,
+          search_fields: ['name'],
+          display_fields: ['name'],
+          value_field: '{{slug}}',
+          multiple: true,
+        }
+      - { name: image, label: Image, widget: image }
+      - {
+          name: gallery,
+          label: 'Image Gallery',
+          widget: list,
+          fields:
+            [
+              { name: image, label: Image, widget: image },
+              { name: title, label: Title },
+            ],
+        }
+      - {
+          name: leadTime,
+          label: 'Lead Time (hours)',
+          widget: number,
+          required: false,
+          default: 24,
+        }
+      - { name: outOfStock, label: 'Out of Stock', widget: boolean }
+      - {
+          name: attributes,
+          label: Attributes,
+          widget: list,
+          fields:
+            [
+              { name: title, label: Title },
+              { name: details, label: Details },
+              { name: icon, label: Icon, widget: image, required: false },
+            ],
+        }
+      - {
+          name: variants,
+          label: Variants,
+          widget: list,
+          fields:
+            [
+              { name: name, label: Name },
+              { name: slug, label: Slug },
+              {
+                name: description,
+                label: Description,
+                widget: markdown,
+                required: false,
+              },
+              { name: image, label: Image, widget: image },
+            ],
+        }
+      - {
+          name: options,
+          label: 'Product Options',
+          widget: relation,
+          collection: productOption,
+          search_fields: ['name'],
+          display_fields: ['name'],
+          value_field: '{{slug}}',
+          multiple: true,
+        }
+      - {
+          name: menuOrder,
+          label: 'Menu Order',
+          widget: number,
+          required: false,
+        }
+      - { name: createdAt, widget: datetime, required: false }
+
+  - name: productOption
+    label: 'Product Options'
+    label_singular: 'Option'
+    folder: 'content/product-options'
+    format: json
+    slug: '{{fields.slug}}'
+    path: '{{slug}}'
+    create: true
+    fields:
+      - { name: templateKey, widget: hidden, default: productOption }
+      - { name: slug, label: Slug }
+      - { name: name, label: Name }
+      - { name: required, label: Required, widget: boolean }
+      - { name: description, label: Description, required: false }
+      - {
+          name: type,
+          label: 'Option Type',
+          widget: select,
+          options:
+            [
+              { label: 'Pick one', value: 'radio' },
+              { label: 'Multiple Choice', value: 'checkbox' },
+              { label: 'Short Answer', value: 'string' },
+              { label: 'Long Answer', value: 'text' },
+            ],
+        }
+      - {
+          name: options,
+          label: 'Options',
+          widget: list,
+          fields:
+            [
+              { name: label, label: Label },
+              { name: value, label: Value },
+              { name: selected, label: Selected, widget: boolean },
+            ],
+        }

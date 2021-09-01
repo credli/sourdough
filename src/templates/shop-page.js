@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { graphql, Link } from 'gatsby';
 import { Col, Row, Container, Breadcrumb } from 'react-bootstrap';
 
@@ -7,15 +7,20 @@ import Seo from '../components/Seo';
 import CategorySelector from '../components/shop/CategorySelector';
 import ProductGrid from '../components/shop/ProductGrid';
 
-function ShopPage({ data, pageContext: { category } }) {
+function ShopPage({ data, pageContext: { slug } }) {
+  const currentCategory = useMemo(
+    () => data.categories.edges.find((e) => e.node.slug === slug)?.node,
+    [slug, data.categories.edges]
+  );
+
   return (
     <Layout>
       <Seo
-        title={`${category.name} Collection`}
-        description={`Place your order for ${category.name} today`}
+        title={`${currentCategory.name} Collection`}
+        description={`Place your order for ${currentCategory.name} today`}
       />
       <Container>
-        <Row>
+        <Row className='mt-3'>
           <Col>
             <Breadcrumb>
               <Breadcrumb.Item
@@ -45,16 +50,13 @@ function ShopPage({ data, pageContext: { category } }) {
           <Col lg={3}>
             <CategorySelector
               categories={data.categories.edges.map((e) => e.node)}
-              selectedCategory={category.slug}
+              selectedCategory={slug}
             />
           </Col>
           <Col lg={9}>
             <ProductGrid
-              category={category.name}
+              category={currentCategory}
               products={data.products.edges.map((e) => e.node)}
-              placeholderImage={
-                data.placeholderImage.childImageSharp.gatsbyImageData
-              }
             />
           </Col>
         </Row>
@@ -67,15 +69,7 @@ export default ShopPage;
 
 export const query = graphql`
   query ShopPageQuery($slug: String!) {
-    placeholderImage: file(relativePath: { eq: "product-placeholder.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-      }
-    }
-    categories: allWpProductCategory(
-      filter: { slug: { ne: "uncategorized" } }
-      sort: { fields: [menuOrder], order: [ASC] }
-    ) {
+    categories: allCategoriesJson(sort: { fields: [menuOrder], order: [ASC] }) {
       edges {
         node {
           slug
@@ -84,48 +78,14 @@ export const query = graphql`
         }
       }
     }
-    products: allWpProduct(
-      filter: {
-        productCategories: { nodes: { elemMatch: { slug: { in: [$slug] } } } }
-      }
-      sort: { fields: [menuOrder], order: [ASC] }
-    ) {
+    products: allProductsJson(filter: { categories: { in: [$slug] } }) {
       edges {
         node {
-          __typename
           slug
           name
-          productCategories {
-            nodes {
-              slug
-              name
-            }
-          }
           image {
-            altText
-            localFile {
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-              }
-            }
-          }
-          ... on WpSimpleProduct {
-            sku
-          }
-          ... on WpVariableProduct {
-            variations {
-              nodes {
-                sku
-                name
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-                    }
-                  }
-                }
-              }
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
             }
           }
         }

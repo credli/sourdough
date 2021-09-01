@@ -1,0 +1,35 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Wonder Loaf",
+  "slug": "wonder-loaf",
+  "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Fermentation",
+      "details": "48 hours"
+    },
+    {
+      "title": "Ingredients",
+      "details": "Organic whole-wheat flour, organic while flour, salt and young sourdough starter"
+    },
+    {
+      "title": "Storage",
+      "details": "Enjoy hot or toasted | Keep at room temperature for up to 4 days | For longer storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from frozen, allow bread to thaw at room temp. and then refresh in 180c oven"
+    },
+    {
+      "title": "Delivery",
+      "details": "Sourdough bakery delivery Monday through Saturday of each week upon pre-order"
+    }
+  ],
+  "createdAt": "2021-08-31T21:15:18.659Z",
+  "image": "images/wonder-loaf.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "50% Whole-wheat, 50% organic white flour, fermented for 48 hours",
+  "options": [
+    "slicing"
+  ],
+  "menuOrder": 1
+}

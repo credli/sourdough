@@ -11,14 +11,8 @@ import ProductGrid from '../components/shop/ProductGrid';
 function ShopPage({ location }) {
   const data = useStaticQuery(graphql`
     {
-      placeholderImage: file(relativePath: { eq: "product-placeholder.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-        }
-      }
-      categories: allWpProductCategory(
+      categories: allCategoriesJson(
         sort: { fields: [menuOrder], order: [ASC] }
-        filter: { slug: { ne: "uncategorized" } }
       ) {
         edges {
           node {
@@ -29,65 +23,18 @@ function ShopPage({ location }) {
           }
         }
       }
-      groupedProducts: allWpProduct(
+      groupedProducts: allProductsJson(
         sort: { fields: [menuOrder], order: [ASC] }
       ) {
-        group(field: productCategories___nodes___name) {
+        group(field: categoriesArray___name) {
           fieldValue
           edges {
             node {
-              __typename
-              ... on WpSimpleProduct {
-                productCategories {
-                  nodes {
-                    name
-                    slug
-                    menuOrder
-                  }
-                }
-                slug
-                sku
-                name
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-                    }
-                  }
-                }
-              }
-              ... on WpVariableProduct {
-                productCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                slug
-                sku
-                name
-                variations {
-                  nodes {
-                    sku
-                    name
-                    image {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-                        }
-                      }
-                    }
-                  }
-                }
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
-                    }
-                  }
+              slug
+              name
+              image {
+                childImageSharp {
+                  gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
                 }
               }
             }
@@ -102,20 +49,17 @@ function ShopPage({ location }) {
       const matchedCategory = data.categories.edges.find(
         (e) => e.node.name === g.fieldValue
       );
-      g.menuOrder = matchedCategory.node.menuOrder;
+      g.category = matchedCategory.node;
       return g;
     });
-    return _.sortBy(grouped, 'menuOrder');
+    return _.sortBy(grouped, 'category.menuOrder');
   }, [data.categories, data.groupedProducts]);
-
-  const params = new URLSearchParams(location.search);
-  const selectedCategory = params.get('category');
 
   return (
     <Layout>
       <Seo title='Shop Products' description='Place your order today' />
       <Container>
-        <Row>
+        <Row className='mt-3'>
           <Col>
             <Breadcrumb>
               <Breadcrumb.Item
@@ -145,18 +89,14 @@ function ShopPage({ location }) {
           <Col lg={3}>
             <CategorySelector
               categories={data.categories.edges.map((e) => e.node)}
-              selectedCategory={selectedCategory}
             />
           </Col>
           <Col lg={9}>
             {groupedProducts.map((grp, grpIdx) => (
               <ProductGrid
                 key={grpIdx}
-                category={grp.fieldValue}
+                category={grp.category}
                 products={grp.edges.map((e) => e.node)}
-                placeholderImage={
-                  data.placeholderImage.childImageSharp.gatsbyImageData
-                }
               />
             ))}
           </Col>
