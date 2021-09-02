@@ -7,19 +7,24 @@
     {
       "slug": "sourdough-bagel-plain",
       "name": "Sourdough Bagel - Plain",
-      "image": "images/bagel.jpg"
+      "image": "images/bagel.jpg",
+      "outOfStock": false
     },
     {
       "slug": "sourdough-bagel-poppy-seeds",
+      "description": "dummy content",
       "name": "Sourdough Bagel - Poppy Seeds",
-      "image": "images/bagel-poppy.jpg"
+      "image": "images/bagel-poppy.jpg",
+      "outOfStock": true
     },
     {
       "name": "Sourdough Bagels - Pack of Four",
       "slug": "sourdough-bagel-pack-of-4",
-      "image": "images/bagel-pack-of-4.jpg"
+      "image": "images/bagel-pack-of-4.jpg",
+      "outOfStock": false
     }
   ],
+  "menuOrder": 2,
   "outOfStock": false,
   "gallery": [
     {
@@ -51,5 +56,5 @@
     "bread"
   ],
   "description": "New York style chewy bagels, fermented for 48 hours.",
-  "menuOrder": 2
+  "options": []
 }

@@ -85,6 +85,8 @@ export const query = graphql`
       variants {
         slug
         name
+        description
+        outOfStock
         image {
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)

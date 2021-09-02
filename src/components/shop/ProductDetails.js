@@ -4,10 +4,10 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { Row, Col, Spinner } from 'react-bootstrap';
 
 // import ProductPrice from '../odoo/ProductPrice';
-import ProductAvailability from '../odoo/ProductAvailability';
+import ProductAvailability from './ProductAvailability';
 import AttributesTable from './AttributesTable';
 import ProductOptions, { ProductOptionsPropTypes } from './ProductOptions';
-import AddToCart from '../odoo/AddToCart';
+import AddToCart from './AddToCart';
 import { InventoryContext } from '../../context/InventoryProvider';
 
 import {
@@ -65,9 +65,10 @@ function ProductDetails({ product }) {
                   image={selectedVariant.image.childImageSharp.gatsbyImageData}
                   alt={selectedVariant.name}
                 />
+                {console.log(selectedVariant)}
                 <ProductAvailability
                   className={availabilityBadge}
-                  slug={selectedVariant.slug}
+                  outOfStock={selectedVariant.outOfStock}
                 />
               </div>
             </Col>
@@ -138,12 +139,14 @@ ProductDetails.propTypes = {
   product: PropTypes.shape({
     slug: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    outOfStock: PropTypes.bool.isRequired,
     ...imagePropTypes,
     variants: PropTypes.arrayOf(
       PropTypes.shape({
         slug: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         ...imagePropTypes,
+        outOfStock: PropTypes.bool.isRequired,
       })
     ),
   }).isRequired,

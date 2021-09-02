@@ -2,9 +2,26 @@
   publish = 'public'
   command = 'npm run build'
   functions = 'lambda/'
+
 [build.environment]
   YARN_VERSION = '1.22.10'
   YARN_FLAGS='--no-ignore-optional'
 
 [context.develop]
-functions = "lambda/"
+  functions = "lambda/"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://api.sourdough.me/:splat"
+  status = 200
+  force = true
+
+  [redirects.headers]
+    X-From = "Netlify"
+    X-API-TOKEN = "${API_KEY}"
+
+[[headers]]
+  for = "/static/*"
+
+  [headers.values]
+    Cache-Control = "public, max-age=360000"

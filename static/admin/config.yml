@@ -244,7 +244,7 @@ collections:
     create: true
     sortable_fields: ['menuOrder']
     media_folder: 'images'
-    public_folder: ''
+    public_folder: 'images/'
     fields:
       - { name: templateKey, widget: hidden, default: category }
       - { name: slug, label: Slug }
@@ -262,7 +262,7 @@ collections:
     path: '{{slug}}'
     create: true
     media_folder: 'images'
-    public_folder: ''
+    public_folder: 'images/'
     fields:
       - { name: templateKey, widget: hidden, default: product }
       - { name: name, label: Name }
@@ -322,6 +322,7 @@ collections:
                 widget: markdown,
                 required: false,
               },
+              { name: outOfStock, label: 'Out of Stock', widget: boolean },
               { name: image, label: Image, widget: image },
             ],
         }
@@ -334,6 +335,7 @@ collections:
           display_fields: ['name'],
           value_field: '{{slug}}',
           multiple: true,
+          required: false,
         }
       - {
           name: menuOrder,

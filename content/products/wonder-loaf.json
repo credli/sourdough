@@ -3,6 +3,7 @@
   "leadTime": 24,
   "name": "Wonder Loaf",
   "slug": "wonder-loaf",
+  "menuOrder": 1,
   "outOfStock": false,
   "attributes": [
     {
@@ -30,6 +31,5 @@
   "description": "50% Whole-wheat, 50% organic white flour, fermented for 48 hours",
   "options": [
     "slicing"
-  ],
-  "menuOrder": 1
+  ]
 }

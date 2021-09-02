@@ -4,7 +4,6 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { Col } from 'react-bootstrap';
 
-// import ProductPrice from '../odoo/ProductPrice';
 import { imageContainer } from './ProductItem.module.scss';
 
 const ProductItem = ({
