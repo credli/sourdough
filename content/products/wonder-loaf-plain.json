@@ -2,7 +2,7 @@
   "templateKey": "product",
   "leadTime": 24,
   "name": "Wonder Loaf",
-  "slug": "wonder-loaf",
+  "slug": "wonder-loaf-plain",
   "menuOrder": 1,
   "outOfStock": false,
   "attributes": [
