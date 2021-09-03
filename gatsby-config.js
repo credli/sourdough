@@ -126,7 +126,6 @@ module.exports = {
               destinationDir: 'static',
             },
           },
-          `gatsby-remark-reading-time`,
         ],
       },
     },

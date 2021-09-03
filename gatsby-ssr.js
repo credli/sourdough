@@ -4,7 +4,10 @@ import './src/components/main.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import InventoryProvider from './src/context/InventoryProvider';
+import CartProvider from './src/context/CartProvider';
 
 export const wrapRootElement = ({ element }) => (
-  <InventoryProvider>{element}</InventoryProvider>
+  <InventoryProvider>
+    <CartProvider>{element}</CartProvider>
+  </InventoryProvider>
 );

@@ -19,7 +19,6 @@ exports.createPages = async (args) => {
               slug
             }
             frontmatter {
-              tags
               templateKey
             }
           }
@@ -76,21 +75,21 @@ exports.createPages = async (args) => {
       tags = tags.concat(edge.node.frontmatter.tags);
     }
   });
-  // Eliminate duplicate tags
-  tags = _.uniq(tags);
+  // // Eliminate duplicate tags
+  // tags = _.uniq(tags);
 
-  // Make tag pages
-  tags.forEach((tag) => {
-    const tagPath = `/tags/${slugify(tag)}/`;
+  // // Make tag pages
+  // tags.forEach((tag) => {
+  //   const tagPath = `/tags/${slugify(tag)}/`;
 
-    createPage({
-      path: tagPath,
-      component: path.resolve(`src/templates/tags.js`),
-      context: {
-        tag,
-      },
-    });
-  });
+  //   createPage({
+  //     path: tagPath,
+  //     component: path.resolve(`src/templates/tags.js`),
+  //     context: {
+  //       tag,
+  //     },
+  //   });
+  // });
 
   // shop page (categories)
   result.data.categories.edges.forEach((edge) => {
