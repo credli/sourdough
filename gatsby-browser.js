@@ -6,6 +6,7 @@ import '@popperjs/core/dist/umd/popper.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 import InventoryProvider from './src/context/InventoryProvider';
+import CartProvider from './src/context/CartProvider';
 
 export const onClientEntry = () => {
   // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
@@ -16,5 +17,7 @@ export const onClientEntry = () => {
 };
 
 export const wrapRootElement = ({ element }) => (
-  <InventoryProvider>{element}</InventoryProvider>
+  <InventoryProvider>
+    <CartProvider>{element}</CartProvider>
+  </InventoryProvider>
 );

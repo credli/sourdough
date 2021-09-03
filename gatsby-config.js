@@ -182,24 +182,20 @@ module.exports = {
     `gatsby-plugin-image`,
   ],
   developMiddleware: (app) => {
-    app.use(
-      '/api/',
-      createProxyMiddleware({
-        target: 'http://localhost:5000',
-        pathRewrite: {
-          '/api/': '',
-        },
-      })
-    );
-
-    app.use(
-      '/.netlify/functions/',
-      createProxyMiddleware({
-        target: 'http://localhost:9000',
-        pathRewrite: {
-          '/.netlify/functions/': '',
-        },
-      })
-    );
+    if (!process.env.NETLIFY_DEV) {
+      app.use(
+        '/api/',
+        createProxyMiddleware({
+          target: 'http://localhost:5000',
+          pathRewrite: {
+            '/api/': '',
+          },
+          onProxyReq(proxyReq, req, res) {
+            proxyReq.setHeader('X-API-TOKEN', process.env.API_TOKEN);
+            proxyReq.setHeader('X-FROM', 'Local Dev');
+          },
+        })
+      );
+    }
   },
 };

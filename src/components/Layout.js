@@ -5,6 +5,7 @@ import { Alert } from 'react-bootstrap';
 
 import NavBar from './NavBar';
 import Footer from './Footer';
+import CartDrawer from './shop/CartDrawer';
 
 import { contentWrapper, main, header, footer } from './Layout.module.scss';
 
@@ -49,6 +50,7 @@ export default function Layout({ children }) {
       <footer className={footer}>
         <Footer />
       </footer>
+      <CartDrawer />
     </div>
   );
 }

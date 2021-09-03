@@ -8,12 +8,12 @@
   "options": [
     {
       "label": "Unsliced",
-      "value": "unsliced",
+      "value": "",
       "selected": true
     },
     {
       "label": "Sliced (16mm)",
-      "value": "sliced",
+      "value": "Sliced",
       "selected": false
     }
   ]

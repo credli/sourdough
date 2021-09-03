@@ -34,7 +34,11 @@ function ShopPage({ location }) {
               name
               image {
                 childImageSharp {
-                  gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+                  gatsbyImageData(
+                    layout: CONSTRAINED
+                    placeholder: BLURRED
+                    aspectRatio: 1.5
+                  )
                 }
               }
             }

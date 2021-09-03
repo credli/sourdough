@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 // TODO: implement string, text, and checkbox options
-function ProductOptions({ options }) {
+function ProductOptions({ options, onChange }) {
+  const handleChange = (e) => {
+    onChange(e.target.value);
+  };
+
   return options.map((option, idx) => (
     <div key={idx}>
       <Form>
@@ -12,13 +16,14 @@ function ProductOptions({ options }) {
           <p className='mb-0 fs-6'>{option.description}</p>
         </Form.Label>
         <fieldset>
-          <Form.Group>
+          <Form.Group onChange={handleChange}>
             {option.options.map((opt, optIdx) => (
               <Form.Check
                 id={`option-${optIdx}`}
                 key={optIdx}
                 type='radio'
                 name={option.slug}
+                value={opt.value}
                 radioGroup={option.slug}
                 label={opt.label}
                 defaultChecked={opt.selected}
@@ -40,7 +45,7 @@ export const ProductOptionsPropTypes = PropTypes.arrayOf(
     options: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
+        value: PropTypes.string,
         selected: PropTypes.bool.isRequired,
       })
     ),
@@ -49,6 +54,7 @@ export const ProductOptionsPropTypes = PropTypes.arrayOf(
 
 ProductOptions.propTypes = {
   options: ProductOptionsPropTypes.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ProductOptions;

@@ -378,7 +378,7 @@ collections:
           fields:
             [
               { name: label, label: Label },
-              { name: value, label: Value },
+              { name: value, label: Value, default: '', required: false },
               { name: selected, label: Selected, widget: boolean },
             ],
         }

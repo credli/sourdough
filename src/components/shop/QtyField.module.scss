@@ -1,0 +1,21 @@
+@import '../main.scss';
+
+.qty-field {
+  max-width: 120px;
+}
+
+.qty-field-input {
+  text-align: center;
+  background-color: white !important;
+  border-color: $offblack;
+  font-size: 1.3rem !important;
+}
+
+.qty-field-button {
+  border-color: $offblack;
+  color: $offblack;
+
+  &:hover {
+    border-color: $offblack;
+  }
+}

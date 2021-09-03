@@ -72,14 +72,19 @@ export const query = graphql`
     product: productsJson(slug: { eq: $slug }) {
       slug
       name
+      description
+      outOfStock
       categoriesArray {
         slug
         name
       }
-      description
       image {
         childImageSharp {
-          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+          gatsbyImageData(
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            aspectRatio: 1.5
+          )
         }
       }
       variants {
@@ -89,7 +94,11 @@ export const query = graphql`
         outOfStock
         image {
           childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+            gatsbyImageData(
+              layout: CONSTRAINED
+              placeholder: BLURRED
+              aspectRatio: 1.5
+            )
           }
         }
       }
@@ -97,7 +106,11 @@ export const query = graphql`
         title
         image {
           childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1.5)
+            gatsbyImageData(
+              layout: CONSTRAINED
+              placeholder: BLURRED
+              aspectRatio: 1.5
+            )
           }
         }
       }

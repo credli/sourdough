@@ -1,7 +1,12 @@
 [build]
+  command = "sed -i \"s|API_URL|${API_URL}|g;s|API_TOKEN|${API_TOKEN}|g\" netlify.toml && npm run build"
   publish = 'public'
-  command = 'npm run build'
   functions = 'lambda/'
+
+[dev]
+  command = "sed -i \"s|API_URL|${API_URL}|g;s|API_TOKEN|${API_TOKEN}|g\" netlify.toml && yarn develop"
+  publish = 'public'
+  autoLaunch = true
 
 [build.environment]
   YARN_VERSION = '1.22.10'
@@ -12,13 +17,10 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://api.sourdough.me/:splat"
+  to = "REPLACED_URL/:splat"
   status = 200
   force = true
-
-  [redirects.headers]
-    X-From = "Netlify"
-    X-API-TOKEN = "${API_KEY}"
+  headers = {X-API-TOKEN = "REPLACED_TOKEN", X-From = "Netlify"}
 
 [[headers]]
   for = "/static/*"

@@ -20,6 +20,7 @@ import {
 function ProductDetails({ product }) {
   const { getProduct, loading, error } = useContext(InventoryContext);
   const hasVariants = product.variants?.length > 0;
+  const [note, setNote] = useState('');
   const [selectedVariant, setSelectedVariant] = useState(
     hasVariants ? product.variants[0] : product
   );
@@ -39,6 +40,15 @@ function ProductDetails({ product }) {
 
   const handleProductVariationClick = (e, product) => {
     setSelectedVariant(product);
+  };
+
+  const handleNoteChange = (newNote) => {
+    console.log('setting note to:', newNote);
+    if (newNote) {
+      setNote(newNote);
+    } else {
+      setNote('');
+    }
   };
 
   return (
@@ -65,7 +75,6 @@ function ProductDetails({ product }) {
                   image={selectedVariant.image.childImageSharp.gatsbyImageData}
                   alt={selectedVariant.name}
                 />
-                {console.log(selectedVariant)}
                 <ProductAvailability
                   className={availabilityBadge}
                   outOfStock={selectedVariant.outOfStock}
@@ -98,21 +107,31 @@ function ProductDetails({ product }) {
             <Col>
               <div
                 className='lead'
-                dangerouslySetInnerHTML={{ __html: product.description }}
+                dangerouslySetInnerHTML={{
+                  __html: selectedVariant.description || product.description,
+                }}
               />
             </Col>
           </Row>
           {product.productOptionsArray?.length > 0 && (
             <Row>
               <Col>
-                <ProductOptions options={product.productOptionsArray} />
+                <ProductOptions
+                  onChange={handleNoteChange}
+                  options={product.productOptionsArray}
+                />
               </Col>
             </Row>
           )}
         </Col>
 
         <Col lg={2} className='order-2 order-lg-3 my-3 my-lg-0'>
-          <AddToCart slug={selectedVariant.slug} />
+          <AddToCart
+            product={selectedVariant.slug}
+            note={note}
+            qty={1}
+            outOfStock={selectedVariant.outOfStock}
+          />
         </Col>
       </Row>
 

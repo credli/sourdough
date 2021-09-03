@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 
+import { CartContext } from '../context/CartProvider';
 import './NavBar.scss';
 
 export default function NavBar() {
+  const { openDrawer } = useContext(CartContext);
+
   return (
     <Navbar className='navbar-light bg-light shadow-sm' expand='lg' fixed='top'>
       <Container>
@@ -55,9 +58,9 @@ export default function NavBar() {
         <Navbar.Collapse className='order-lg-3 order-4 navigation-menu'>
           <Nav className='align-items-lg-center ms-auto'>
             <Nav.Item as='li'>
-              <Nav.Link as={Link} to='/basket'>
+              <Nav.Link onClick={() => openDrawer()}>
                 <i className='bi-basket d-none d-lg-inline' />
-                <span className='d-inline d-lg-none'>My Cart</span>
+                <span className='d-inline d-lg-none'>My Basket</span>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item as='li'>

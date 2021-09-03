@@ -1,34 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Button } from 'react-bootstrap';
 
-import { InventoryContext } from '../../context/InventoryProvider';
+import { CartContext } from '../../context/CartProvider.js';
 
-function AddToCart({ slug, loadingEl }) {
+function AddToCart({ product, qty, note, outOfStock, loadingEl }) {
+  const { updateCartQty } = useContext(CartContext);
+
+  const handleAddToCart = (e) => {
+    const n = note.length > 0 ? note : null;
+    updateCartQty(product, qty, n);
+  };
+
   return (
-    <InventoryContext.Consumer>
-      {({ loading, info, error }) => (
+    <>
+      {!outOfStock && (
         <div className='d-grid gap-2'>
-          {!loading ? (
-            <>
-              {info?.qty_available > 0 && (
-                <Button size='lg' variant='primary'>
-                  <i className='bi bi-basket me-2' />
-                  Add to Cart
-                </Button>
-              )}
-            </>
-          ) : (
-            <Spinner size='sm' />
-          )}
+          <Button size='lg' variant='primary' onClick={handleAddToCart}>
+            <i className='bi bi-basket me-2' />
+            Add to Basket
+          </Button>
         </div>
       )}
-    </InventoryContext.Consumer>
+    </>
   );
 }
 
 AddToCart.propTypes = {
-  slug: PropTypes.string.isRequired,
+  product: PropTypes.string.isRequired,
+  qty: PropTypes.number.isRequired,
+  note: PropTypes.string.isRequired,
+  outOfStock: PropTypes.bool.isRequired,
   loadingEl: PropTypes.node,
 };
 
