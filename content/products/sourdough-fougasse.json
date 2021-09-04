@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Fougasse",
+  "slug": "sourdough-fougasse",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T20:49:51.893Z",
+  "image": "images/sourdough-fougasse.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "Traditional French Fougasse bread with olives, slow fermented"
+}
