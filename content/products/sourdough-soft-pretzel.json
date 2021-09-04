@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Soft Pretzel",
+  "slug": "sourdough-soft-pretzel",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T20:52:52.643Z",
+  "image": "images/sourdough-soft-pretzel.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "New York style soft Pretzel sprinkled with coarse salt"
+}
