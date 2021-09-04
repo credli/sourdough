@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Croutons",
+  "slug": "sourdough-croutons",
+  "menuOrder": "",
+  "outOfStock": true,
+  "createdAt": "2021-09-04T20:16:53.746Z",
+  "image": "images/sourdough-croutons.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "Sourdough croutons are full of flavor, they are made from our daily baked loaves and they are tastier and healthier than store-bought alternatives. Add them to your salads or soups, or serve them as bruschetta for appetizers."
+}
