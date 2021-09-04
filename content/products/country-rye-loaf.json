@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Country Rye Loaf",
+  "slug": "country-rye-loaf",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T20:34:52.672Z",
+  "image": "images/country-rye-loaf.jpeg",
+  "categories": [
+    "bread"
+  ],
+  "description": "70% Organic Rye with 30% Organic malted flour, fermented for 48 hours."
+}
