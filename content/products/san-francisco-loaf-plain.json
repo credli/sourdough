@@ -1,0 +1,22 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "San Francisco Loaf ",
+  "slug": "san-francisco-loaf-plain",
+  "variants": [
+    {
+      "name": "San Francisco Loaf - Olives ",
+      "slug": "san-francisco-loaf-olives",
+      "outOfStock": false,
+      "image": "images/san-francisco-loaf-olives.jpg",
+      "description": "San Francisco style Sourdough bread made with organic while flour and olives, fermented for 48 hours"
+    }
+  ],
+  "outOfStock": false,
+  "createdAt": "2021-09-04T21:31:12.649Z",
+  "image": "images/san-francisco-loaf-plain.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "San Francisco style Sourdough bread made with organic while flour, fermented for 48 hours"
+}
