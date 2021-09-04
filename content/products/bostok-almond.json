@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Bostok Almond",
+  "slug": "bostok-almond",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T22:32:05.006Z",
+  "image": "images/bostok-almond.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Slice of Brioche feuillettée topped with our frangipane rustic, shaved almonds and icing sugar."
+}
