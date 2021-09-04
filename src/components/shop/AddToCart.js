@@ -5,7 +5,7 @@ import { Spinner, Button } from 'react-bootstrap';
 import { CartContext } from '../../context/CartProvider.js';
 
 function AddToCart({ product, qty, note, outOfStock, loadingEl }) {
-  const { updateCartQty } = useContext(CartContext);
+  const { updateCartQty, loading } = useContext(CartContext);
 
   const handleAddToCart = (e) => {
     const n = note.length > 0 ? note : null;
@@ -17,7 +17,20 @@ function AddToCart({ product, qty, note, outOfStock, loadingEl }) {
       {!outOfStock && (
         <div className='d-grid gap-2'>
           <Button size='lg' variant='primary' onClick={handleAddToCart}>
-            <i className='bi bi-basket me-2' />
+            {loading ? (
+              <>
+                <Spinner
+                  as='span'
+                  animation='broder'
+                  size='sm'
+                  role='status'
+                  aria-hidden='true'
+                />
+                <span className='visually-hidden'>Loading...</span>
+              </>
+            ) : (
+              <i className='bi bi-basket me-2' />
+            )}
             Add to Basket
           </Button>
         </div>

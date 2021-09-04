@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: credli/sourdough
-  branch: main
+  branch: v2
 
 local_backend: true
 media_folder: static/img
