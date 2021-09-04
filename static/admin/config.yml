@@ -296,7 +296,12 @@ collections:
           required: false,
           default: 24,
         }
-      - { name: outOfStock, label: 'Out of Stock', widget: boolean }
+      - {
+          name: outOfStock,
+          label: 'Out of Stock',
+          widget: boolean,
+          default: false,
+        }
       - {
           name: attributes,
           label: Attributes,
@@ -322,7 +327,12 @@ collections:
                 widget: markdown,
                 required: false,
               },
-              { name: outOfStock, label: 'Out of Stock', widget: boolean },
+              {
+                name: outOfStock,
+                label: 'Out of Stock',
+                widget: boolean,
+                default: false,
+              },
               { name: image, label: Image, widget: image },
             ],
         }
