@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Croclair Croissant ",
+  "slug": "sourdough-croclair-croissant",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T22:29:28.725Z",
+  "image": "images/sourdough-croclair.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Our famous 47-layers croissant dough, filled with bavarian cream and dipped in chocolate eclair-style."
+}
