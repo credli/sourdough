@@ -85,6 +85,9 @@ export default function Footer() {
             </ul>
           </Col>
         </Row>
+        <Row>
+          <Col className='text-center pb-3'>Created with ❤️ by 👨🏻‍💻&amp;👩🏻‍💻</Col>
+        </Row>
       </Container>
     </div>
   );
