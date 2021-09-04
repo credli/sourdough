@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Walberry Loaf",
+  "slug": "walberry-loaf",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T20:42:21.842Z",
+  "image": "images/walberry-loaf.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "100% Whole-wheat loaf with cranberries and walnuts, fermented for 60hrs."
+}
