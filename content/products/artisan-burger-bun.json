@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Artisan Burger Bun ",
+  "slug": "artisan-burger-bun",
+  "outOfStock": true,
+  "createdAt": "2021-09-04T20:23:02.310Z",
+  "image": "images/artisan-burger-bun.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "Soft with a kick of sour, these buns pair perfectly well with burger patties. We have optimized our recipe for savory taste and structure, we recommend that you toast them for extra awesomeness!"
+}
