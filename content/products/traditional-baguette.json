@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Traditional Baguette",
+  "slug": "traditional-baguette",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T22:09:00.607Z",
+  "image": "images/traditional-baguette-plain.jpeg",
+  "categories": [
+    "bread"
+  ],
+  "description": "Our traditional baguette recipe with a blend of mature levain and \"Poolish\" preferment, prepared 24 hours in advance."
+}
