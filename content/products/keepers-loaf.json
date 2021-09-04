@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Keepers Loaf",
+  "slug": "keepers-loaf",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-04T20:57:32.909Z",
+  "image": "images/keepers-loaf.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "100% whole-wheat loaf, fermented for 60 hours"
+}
