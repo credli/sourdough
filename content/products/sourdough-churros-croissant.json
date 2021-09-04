@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Churros Croissant",
+  "slug": "sourdough-churros-croissant",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T22:20:04.496Z",
+  "image": "images/sourdough-churros.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Sourdough Churros Croissants inspired by the Traditional Churros strips, rolled in cinnamon and sugar."
+}
