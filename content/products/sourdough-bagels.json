@@ -14,11 +14,11 @@
       "slug": "sourdough-bagel-poppy-seeds",
       "description": "dummy content",
       "name": "Sourdough Bagel - Poppy Seeds",
-      "image": "images/bagel-poppy.jpg",
+      "image": "images/sourdough-bagel-poppy-seeds.jpg",
       "outOfStock": true
     },
     {
-      "name": "Sourdough Bagels - Pack of Four",
+      "name": "Sourdough Bagels - Pack of 4",
       "slug": "sourdough-bagel-pack-of-4",
       "image": "images/bagel-pack-of-4.jpg",
       "outOfStock": false
