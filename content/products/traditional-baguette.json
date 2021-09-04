@@ -9,5 +9,8 @@
   "categories": [
     "bread"
   ],
-  "description": "Our traditional baguette recipe with a blend of mature levain and \"Poolish\" preferment, prepared 24 hours in advance."
+  "description": "Our traditional baguette recipe with a blend of mature levain and \"Poolish\" preferment, prepared 24 hours in advance.",
+  "options": [
+    "slicing"
+  ]
 }
