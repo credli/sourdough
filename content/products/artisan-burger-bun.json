@@ -1,9 +1,18 @@
 {
   "templateKey": "product",
   "leadTime": 24,
-  "name": "Artisan Burger Bun ",
+  "name": "Artisan Burger Bun",
   "slug": "artisan-burger-bun",
+  "variants": [
+    {
+      "name": "Artisan Burger Bun - Pack of 4",
+      "slug": "artisan-burger-bun-pack-of-4",
+      "outOfStock": false,
+      "image": "images/artisan-burger-bun-pack-of-4.jpg"
+    }
+  ],
   "outOfStock": true,
+  "attributes": [],
   "createdAt": "2021-09-04T20:23:02.310Z",
   "image": "images/artisan-burger-bun.jpg",
   "categories": [
