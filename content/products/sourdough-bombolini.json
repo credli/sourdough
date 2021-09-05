@@ -17,6 +17,13 @@
       "slug": "sourdough-bombolini-chocolate",
       "description": "Sourdough fluffy Bombolini filled with dark chocolate",
       "image": "images/sourdough-bombolini-chocolate.jpg"
+    },
+    {
+      "outOfStock": false,
+      "description": "Sourdough fluffy Bombolini filled with homemade Bavarian cream",
+      "slug": "sourdough-bombolini-bavarian-cream",
+      "name": "Sourdough Bombolini Bavarian cream",
+      "image": "images/sourdough-bombolini-bavarian-cream.jpg"
     }
   ],
   "outOfStock": false,
