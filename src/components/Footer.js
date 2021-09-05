@@ -86,7 +86,7 @@ export default function Footer() {
           </Col>
         </Row>
         <Row>
-          <Col className='text-center pb-3'>Created with ❤️ by 👨🏻‍💻&amp;👩🏻‍💻</Col>
+          <Col className='text-center pb-3'>Made with ❤️ by 👨🏻‍💻&amp;👩🏻‍💻</Col>
         </Row>
       </Container>
     </div>

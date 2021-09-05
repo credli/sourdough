@@ -5,9 +5,13 @@ const Slugify = require('slugify');
 
 const slugify = (s) => Slugify(s, { lower: true, remove: /[*+~.()''!:@]/g });
 
-exports.createPages = async (args) => {
-  const { actions, graphql } = args;
-  const { createPage } = actions;
+exports.createPages = async ({
+  actions,
+  graphql,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const { createPage, createNode } = actions;
 
   const result = await graphql(`
     {
@@ -40,6 +44,10 @@ exports.createPages = async (args) => {
             slug
             name
             categories
+            variants {
+              slug
+              name
+            }
           }
         }
       }
@@ -102,7 +110,7 @@ exports.createPages = async (args) => {
     });
   });
 
-  // product details
+  // product details page
   result.data.products.edges.forEach((edge) => {
     edge.node.categories.forEach((category) => {
       createPage({
@@ -117,7 +125,65 @@ exports.createPages = async (args) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    # Hint: @link "by" should be the primary key of the linked entity (ex. products),
+    # "from" must be foreign key in current entity (ex. relatedProducts.product)
+
+    type ProductsJson implements Node {
+      categoriesArray: [CategoriesJson] @link(by: "slug", from: "categories")
+      productOptionsArray: [ProductOptionsJson] @link(by: "slug", from: "options")
+    }
+
+    type CategoriesJson implements Node {
+      productsArray: [ProductsJson] @link(by: "categories", from: "slug")
+    }
+  `;
+  createTypes(typeDefs);
+};
+
+exports.sourceNodes = ({
+  actions,
+  createNodeId,
+  createContentDigest,
+  getNodesByType,
+}) => {
+  const { createNode } = actions;
+
+  const createFetchedProductRecord = (product) => {
+    const fetchedProduct = {
+      slug: product.slug,
+      name: product.name,
+      image: product.image,
+    };
+    const nodeContent = JSON.stringify(fetchedProduct);
+    const nodeMeta = {
+      id: createNodeId(`product-image-${product.slug}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'FetchedProduct',
+        mediaType: `text/html`,
+        content: nodeContent,
+        contentDigest: createContentDigest(fetchedProduct),
+      },
+    };
+    const node = Object.assign({}, fetchedProduct, nodeMeta);
+    createNode(node);
+  };
+
+  // get all products
+  const products = getNodesByType(`ProductsJson`);
+  products.forEach((product) => {
+    createFetchedProductRecord(product);
+    product.variants?.forEach((variant) => {
+      createFetchedProductRecord(variant);
+    });
+  });
+};
+
+exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
@@ -125,6 +191,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: `slug`,
       node,
       value,
+    });
+  }
+
+  if (node.internal.type === `FetchedProduct`) {
+    const imagePath = path.resolve(__dirname, `content/products/${node.image}`);
+    const fileNodes = getNodesByType('File');
+    const imageNode = fileNodes.find(
+      (fileNode) => fileNode.absolutePath === imagePath
+    );
+    createNodeField({
+      name: `image___NODE`,
+      node,
+      value: imageNode.id,
     });
   }
 };
@@ -150,22 +229,4 @@ exports.createResolvers = ({ createResolvers }) => {
     },
   };
   createResolvers(resolvers);
-};
-
-exports.createSchemaCustomization = ({ actions, schema }) => {
-  const { createTypes } = actions;
-  const typeDefs = `
-    # Hint: @link "by" should be the primary key of the linked entity (ex. products),
-    # "from" must be foreign key in current entity (ex. relatedProducts.product)
-
-    type ProductsJson implements Node {
-      categoriesArray: [CategoriesJson] @link(by: "slug", from: "categories")
-      productOptionsArray: [ProductOptionsJson] @link(by: "slug", from: "options")
-    }
-
-    type CategoriesJson implements Node {
-      productsArray: [ProductsJson] @link(by: "categories", from: "slug")
-    }
-  `;
-  createTypes(typeDefs);
 };

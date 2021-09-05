@@ -18,7 +18,7 @@ import {
 } from './ProductDetails.module.scss';
 
 function ProductDetails({ product }) {
-  const { getProduct, loading, error } = useContext(InventoryContext);
+  const { getProduct, loading } = useContext(InventoryContext);
   const hasVariants = product.variants?.length > 0;
   const [note, setNote] = useState('');
   const [selectedVariant, setSelectedVariant] = useState(
@@ -87,6 +87,7 @@ function ProductDetails({ product }) {
               products.map((p, idx) => (
                 <Col key={idx}>
                   <div
+                    role='cell'
                     onClick={(e) => handleProductVariationClick(e, p)}
                     className={`${variationImage} ${
                       p.slug === selectedVariant.slug ? selected : ''

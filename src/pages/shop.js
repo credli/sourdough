@@ -23,9 +23,7 @@ function ShopPage({ location }) {
           }
         }
       }
-      groupedProducts: allProductsJson(
-        sort: { fields: [menuOrder], order: [ASC] }
-      ) {
+      groupedProducts: allProductsJson {
         group(field: categoriesArray___name) {
           fieldValue
           edges {

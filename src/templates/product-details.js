@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql, navigate } from 'gatsby';
-import { Breadcrumb, Container, Row, Col, Button } from 'react-bootstrap';
+import { Breadcrumb, Container, Row, Col } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';

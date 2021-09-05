@@ -86,6 +86,7 @@ export const CartProvider = ({ children }) => {
         error,
         cart,
         updateCartQty,
+        updateCartDetails,
         drawerOpen,
         openDrawer,
         closeDrawer,

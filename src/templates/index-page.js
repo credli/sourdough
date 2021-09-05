@@ -81,6 +81,7 @@ export const query = graphql`
                 aspectRatio: 1.77
                 # height: 700
                 quality: 100
+                placeholder: NONE
                 blurredOptions: { width: 200 }
                 transformOptions: { cropFocus: CENTER, fit: COVER }
               )
