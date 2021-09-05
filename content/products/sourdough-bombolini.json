@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Bombolini",
+  "slug": "sourdough-bombolini",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T19:41:10.708Z",
+  "image": "images/sourdough-bombolini.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Our special sourdough version of Bombolini doughnuts, fried in avocado oil, these doughnuts are fluffy with a crispy sugar crust"
+}
