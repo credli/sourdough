@@ -8,8 +8,15 @@
       "outOfStock": false,
       "name": "Sourdough Bombolini",
       "slug": "sourdough-bombolini",
-      "description": "Sourdough Bombolini fluffy with a crispy sugar crust",
+      "description": "Sourdough fluffy Bombolini with a crispy sugar crust",
       "image": "images/sourdough-bombolini.jpg"
+    },
+    {
+      "outOfStock": false,
+      "name": "Sourdough Bombolini Chocolate",
+      "slug": "sourdough-bombolini-chocolate",
+      "description": "Sourdough fluffy Bombolini filled with dark chocolate",
+      "image": "images/sourdough-bombolini-chocolate.jpg"
     }
   ],
   "outOfStock": false,
