@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Almond Croissant",
+  "slug": "sourdough-almond-croissant",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T18:43:57.289Z",
+  "image": "images/sourdough-croissant-almond.jpeg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Our famous 47-layers croissant sheet, made with European butter and our signature rustic frangipane mix"
+}
