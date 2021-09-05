@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Braided Brioche",
+  "slug": "braided-brioche",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T18:46:25.504Z",
+  "image": "images/braided-brioche.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Braided light brioche"
+}

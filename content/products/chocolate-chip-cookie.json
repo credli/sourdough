@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Chocolate chip Cookie",
+  "slug": "chocolate-chip-cookie",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T18:51:38.976Z",
+  "image": "images/chocolate-chip-cookie.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "The Toll House Cookie was invented by Ruth Graves Wakefield in the 1930s, when she and her husband Kenneth owned the Toll House Inn in Massachusetts. Our version is chewy with rich chunks of artisan chocolate that slowly melts in your mouth"
+}

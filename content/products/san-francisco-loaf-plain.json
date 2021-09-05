@@ -10,13 +10,31 @@
       "outOfStock": false,
       "image": "images/san-francisco-loaf-olives.jpg",
       "description": "San Francisco style Sourdough bread made with organic while flour and olives, fermented for 48 hours"
+    },
+    {
+      "name": "San Francisco Loaf - Nigella seeds",
+      "slug": "san-francisco-loaf-nigella-seeds",
+      "description": "San Francisco style Sourdough bread made with organic while flour and nigella seeds, fermented for 48 hours",
+      "image": "images/f909312e-8c4a-4803-9761-d078a1b15dd7.jpeg",
+      "outOfStock": false
+    },
+    {
+      "name": "San Francisco Loaf - Plain",
+      "slug": "san-francisco-loaf-plain",
+      "description": "San Francisco style Sourdough bread made with organic while flour, fermented for 48 hours",
+      "image": "images/san-francisco-loaf-plain.jpg",
+      "outOfStock": false
     }
   ],
+  "menuOrder": "",
   "outOfStock": false,
   "createdAt": "2021-09-04T21:31:12.649Z",
   "image": "images/san-francisco-loaf-plain.jpg",
   "categories": [
     "bread"
   ],
-  "description": "San Francisco style Sourdough bread made with organic while flour, fermented for 48 hours"
+  "description": "San Francisco style Sourdough bread made with organic while flour, fermented for 48 hours",
+  "options": [
+    "slicing"
+  ]
 }

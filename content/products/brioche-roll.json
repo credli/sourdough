@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Brioche Roll",
+  "slug": "brioche-roll",
+  "outOfStock": false,
+  "createdAt": "2021-09-05T17:54:07.683Z",
+  "image": "images/brioche-roll.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Sourdough version of classic Brioche butter dough fermented for 18hrs."
+}

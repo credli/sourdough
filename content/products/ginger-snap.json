@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Ginger Snap",
+  "slug": "ginger-snap",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T19:05:56.737Z",
+  "image": "images/ginger-snap.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Crunchy and redolent, the diminutive gingersnap has been a favorite treat since medieval times!"
+}

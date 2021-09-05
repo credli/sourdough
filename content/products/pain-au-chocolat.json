@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Pain au Chocolat",
+  "slug": "pain-au-chocolat",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T18:39:14.679Z",
+  "image": "images/sourdough-croissant-chocolate.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Our famous 47-layers Pain au Chocolat sheet, made with European butter and dark chocolate sticks"
+}

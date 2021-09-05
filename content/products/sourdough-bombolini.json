@@ -1,0 +1,46 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Bombolini",
+  "slug": "sourdough-bombolini",
+  "variants": [
+    {
+      "outOfStock": false,
+      "name": "Sourdough Bombolini",
+      "slug": "sourdough-bombolini",
+      "description": "Sourdough fluffy Bombolini with a crispy sugar crust",
+      "image": "images/sourdough-bombolini.jpg"
+    },
+    {
+      "outOfStock": false,
+      "name": "Sourdough Bombolini Chocolate",
+      "slug": "sourdough-bombolini-chocolate",
+      "description": "Sourdough fluffy Bombolini filled with dark chocolate",
+      "image": "images/sourdough-bombolini-chocolate.jpg"
+    },
+    {
+      "outOfStock": false,
+      "description": "Sourdough fluffy Bombolini filled with homemade Bavarian cream",
+      "slug": "sourdough-bombolini-bavarian-cream",
+      "name": "Sourdough Bombolini Bavarian cream",
+      "image": "images/sourdough-bombolini-bavarian-cream.jpg"
+    }
+  ],
+  "outOfStock": false,
+  "gallery": [
+    {
+      "image": "images/img_2343.jpeg",
+      "title": "Sourdough Bombolinis"
+    },
+    {
+      "image": "images/img_6451_e02.jpeg",
+      "title": "Sourdough Bombolinis"
+    }
+  ],
+  "createdAt": "2021-09-05T19:41:10.708Z",
+  "image": "images/sourdough-bombolini.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Our special sourdough version of Bombolini doughnuts, fried in avocado oil, these doughnuts are fluffy with a crispy sugar crust"
+}

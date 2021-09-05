@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Cinnamon escargot ",
+  "slug": "cinnamon-escargot",
+  "outOfStock": false,
+  "createdAt": "2021-09-05T17:48:12.461Z",
+  "image": "images/cinnamon-escargot.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Sheeted sweet roll with cinnamon, nutmeg, and muscovado sugar spread, topped with sweet vanilla frosting."
+}

@@ -1,0 +1,37 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Mountain King Rye Loaf",
+  "slug": "mountain-king-rye-loaf-plain",
+  "variants": [
+    {
+      "name": "Mountain King Rye Loaf - Plain",
+      "slug": "mountain-king-rye-loaf-plain",
+      "description": "100% Dark Rye, cold fermented for 48 hours",
+      "outOfStock": false,
+      "image": "images/mountain-king-rye-loaf-plain.jpg"
+    },
+    {
+      "name": "Mountain King Rye Loaf - Seeded",
+      "slug": "moutain-king-rye-loaf-seeded",
+      "description": "100% Dark Rye with toasted seeds, cold fermented for 48 hours",
+      "outOfStock": false,
+      "image": "images/mountain-king-rye-seeded.jpg"
+    },
+    {
+      "name": "Mountain King Rye Loaf - Lemony ",
+      "slug": "mountain-king-rye-loaf-lemony",
+      "description": "100% Dark Rye with lemon infusion, cold fermented for 48 hours",
+      "outOfStock": false,
+      "image": "images/img_2820.jpeg"
+    }
+  ],
+  "outOfStock": false,
+  "gallery": [],
+  "createdAt": "2021-09-04T21:45:51.236Z",
+  "image": "images/mountain-king-rye-loaf-plain.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "100% Dark Rye, cold fermented for 48 hours"
+}

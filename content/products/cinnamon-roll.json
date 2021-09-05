@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Cinnamon Roll",
+  "slug": "cinnamon-roll",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T18:31:25.829Z",
+  "image": "images/cinnamon-roll.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Sweet roll dough spread with cinnamon and brown sugar, topped with sweet vanilla frosting"
+}
