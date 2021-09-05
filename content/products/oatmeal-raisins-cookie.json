@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Oatmeal raisins Cookie",
+  "slug": "oatmeal-raisins-cookie",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-05T19:03:03.263Z",
+  "image": "images/oatmeal-raisin-cookie.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Oatmeal raisin cookie is a delightful treat with an irresistible aroma. Earthy and humble, this classic American cookie demands a glass of milk as accompaniment."
+}
