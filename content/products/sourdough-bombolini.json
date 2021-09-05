@@ -27,6 +27,12 @@
     }
   ],
   "outOfStock": false,
+  "gallery": [
+    {
+      "image": "images/img_2343.jpeg",
+      "title": "Sourdough Bombolinis"
+    }
+  ],
   "createdAt": "2021-09-05T19:41:10.708Z",
   "image": "images/sourdough-bombolini.jpg",
   "categories": [
