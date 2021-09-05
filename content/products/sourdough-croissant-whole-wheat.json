@@ -1,0 +1,13 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Sourdough Croissant Whole Wheat",
+  "slug": "sourdough-croissant-whole-wheat",
+  "outOfStock": false,
+  "createdAt": "2021-09-04T22:37:35.283Z",
+  "image": "images/sourdough-croissant-wholewheat.jpg",
+  "categories": [
+    "pastries"
+  ],
+  "description": "Our famous 47-layers croissant made with European butter, whole-wheat flour with seeds on top, slow fermented till perfection."
+}
