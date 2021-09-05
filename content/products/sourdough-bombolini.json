@@ -3,7 +3,15 @@
   "leadTime": 24,
   "name": "Sourdough Bombolini",
   "slug": "sourdough-bombolini",
-  "variants": [],
+  "variants": [
+    {
+      "outOfStock": false,
+      "name": "Sourdough Bombolini",
+      "slug": "sourdough-bombolini",
+      "description": "Sourdough Bombolini fluffy with a crispy sugar crust",
+      "image": "images/sourdough-bombolini.jpg"
+    }
+  ],
   "outOfStock": false,
   "createdAt": "2021-09-05T19:41:10.708Z",
   "image": "images/sourdough-bombolini.jpg",
