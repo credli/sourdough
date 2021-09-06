@@ -11,6 +11,7 @@ import Newsletter from './views/components/Newsletter';
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.index;
+  const categories = data.settings.categories.map((c) => c.categoryObject);
 
   return (
     <Layout>
@@ -23,7 +24,7 @@ const IndexPage = ({ data }) => {
         carousel={frontmatter.carousel}
         pitch={frontmatter.pitch}
       />
-      <Categories categories={data.categories} />
+      <Categories categories={categories} />
       <Newsletter />
     </Layout>
   );
@@ -54,17 +55,13 @@ IndexPage.propTypes = {
         ),
       }),
     }),
-    categories: PropTypes.shape({
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            slug: PropTypes.string,
-            name: PropTypes.string,
-            image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-          }),
-        })
-      ),
-    }),
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        slug: PropTypes.string,
+        name: PropTypes.string,
+        image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      })
+    ),
   }),
 };
 
@@ -106,9 +103,9 @@ export const query = graphql`
         }
       }
     }
-    categories: allCategoriesJson(sort: { fields: [menuOrder], order: [ASC] }) {
-      edges {
-        node {
+    settings: settingsJson {
+      categories {
+        categoryObject {
           slug
           name
           image {
@@ -116,7 +113,6 @@ export const query = graphql`
               gatsbyImageData(layout: FIXED, placeholder: BLURRED, height: 400)
             }
           }
-          menuOrder
         }
       }
     }

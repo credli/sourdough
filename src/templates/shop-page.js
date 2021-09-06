@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { Col, Row, Container, Breadcrumb } from 'react-bootstrap';
 
@@ -8,10 +8,14 @@ import CategorySelector from '../components/shop/CategorySelector';
 import ProductGrid from '../components/shop/ProductGrid';
 
 function ShopPage({ data, pageContext: { slug } }) {
-  const currentCategory = useMemo(
-    () => data.categories.edges.find((e) => e.node.slug === slug)?.node,
-    [slug, data.categories.edges]
-  );
+  const categories = data.settings.categories
+    .filter((c) => c.products && c.products.length > 0) // skip empty categoriess
+    .map((c) => ({
+      ...c.categoryObject,
+      products: c.products,
+    }));
+  const currentCategory = categories.find((c) => c.slug === slug);
+  const products = currentCategory.products.map((p) => p.productObject);
 
   return (
     <Layout>
@@ -48,16 +52,10 @@ function ShopPage({ data, pageContext: { slug } }) {
         </Row>
         <Row>
           <Col lg={3}>
-            <CategorySelector
-              categories={data.categories.edges.map((e) => e.node)}
-              selectedCategory={slug}
-            />
+            <CategorySelector categories={categories} selectedCategory={slug} />
           </Col>
           <Col lg={9}>
-            <ProductGrid
-              category={currentCategory}
-              products={data.products.edges.map((e) => e.node)}
-            />
+            <ProductGrid category={currentCategory} products={products} />
           </Col>
         </Row>
       </Container>
@@ -68,28 +66,28 @@ function ShopPage({ data, pageContext: { slug } }) {
 export default ShopPage;
 
 export const query = graphql`
-  query ShopPageQuery($slug: String!) {
-    categories: allCategoriesJson(sort: { fields: [menuOrder], order: [ASC] }) {
-      edges {
-        node {
+  query ShopPageQuery {
+    settings: settingsJson {
+      categories {
+        slug: category
+        categoryObject {
           slug
           name
           count
         }
-      }
-    }
-    products: allProductsJson(filter: { categories: { in: [$slug] } }) {
-      edges {
-        node {
-          slug
-          name
-          image {
-            childImageSharp {
-              gatsbyImageData(
-                layout: CONSTRAINED
-                placeholder: BLURRED
-                aspectRatio: 1.5
-              )
+        products {
+          slug: product
+          productObject {
+            slug
+            name
+            image {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                  aspectRatio: 1.5
+                )
+              }
             }
           }
         }

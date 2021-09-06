@@ -1,7 +1,126 @@
 {
   "announcement": {
     "theme": "primary",
-    "message": "Our <a href='/shop'>online store</a> is open, place your order for tomorrow before 4pm!",
+    "message": "Free delivery for orders above LBP 320,000. Estimated delivery time is 2 days due to nationwide electricity and fuel outages. Check our <a href='/outages'>notice</a> for more info.",
     "visible": true
-  }
+  },
+  "categories": [
+    {
+      "category": "bread",
+      "products": [
+        {
+          "product": "san-francisco-loaf-plain"
+        },
+        {
+          "product": "wonder-loaf-plain"
+        },
+        {
+          "product": "keepers-loaf"
+        },
+        {
+          "product": "walberry-loaf"
+        },
+        {
+          "product": "country-rye-loaf"
+        },
+        {
+          "product": "mountain-king-rye-loaf-plain"
+        },
+        {
+          "product": "traditional-baguette"
+        },
+        {
+          "product": "sourdough-fougasse"
+        },
+        {
+          "product": "sourdough-bagel"
+        },
+        {
+          "product": "sourdough-soft-pretzel"
+        },
+        {
+          "product": "artisan-burger-bun"
+        },
+        {
+          "product": "sourdough-croutons"
+        }
+      ]
+    },
+    {
+      "category": "pastries",
+      "products": [
+        {
+          "product": "sourdough-croissant"
+        },
+        {
+          "product": "sourdough-wholewheat-croissant"
+        },
+        {
+          "product": "pain-au-chocolat"
+        },
+        {
+          "product": "sourdough-almond-croissant"
+        },
+        {
+          "product": "sourdough-croclair-croissant"
+        },
+        {
+          "product": "sourdough-churros-croissant"
+        },
+        {
+          "product": "cinnamon-roll"
+        },
+        {
+          "product": "cinnamon-escargot"
+        },
+        {
+          "product": "bostock-almond"
+        },
+        {
+          "product": "brioche-roll"
+        },
+        {
+          "product": "braided-brioche"
+        },
+        {
+          "product": "sourdough-bombolini"
+        },
+        {
+          "product": "chocolate-chip-cookie"
+        },
+        {
+          "product": "oatmeal-raisins-cookie"
+        },
+        {
+          "product": "ginger-snap"
+        }
+      ]
+    },
+    {
+      "category": "coffee"
+    },
+    {
+      "category": "merchandise"
+    }
+  ],
+  "featuredProducts": [
+    {
+      "product": "keepers-loaf"
+    },
+    {
+      "product": "wonder-loaf-plain"
+    },
+    {
+      "product": "san-francisco-loaf-plain"
+    },
+    {
+      "product": "sourdough-croissant"
+    },
+    {
+      "product": "cinnamon-roll"
+    },
+    {
+      "product": "braided-brioche"
+    }
+  ]
 }

@@ -4,6 +4,28 @@
   "name": "Sourdough Fougasse",
   "slug": "sourdough-fougasse",
   "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Fermentation",
+      "details": "16 hours"
+    },
+    {
+      "title": "Ingredients",
+      "details": "Organic malted white flour, olives, olive oil, sea salt, and young sourdough starter"
+    },
+    {
+      "title": "Allergy Info",
+      "details": "This product contains wheat and gluten and may also contain traces of nuts."
+    },
+    {
+      "title": "Shelf-life and Storage",
+      "details": "Enjoy hot or toasted | Keep at room temperature for up to 2 days | For long-term storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from freezer, allow bread to thaw at room temp. and then refresh in 180c oven"
+    },
+    {
+      "title": "Delivery",
+      "details": "Sourdough bakery delivers Monday through Saturday of each week upon pre-order with ETA of 2 working days."
+    }
+  ],
   "createdAt": "2021-09-04T20:49:51.893Z",
   "image": "images/sourdough-fougasse.jpg",
   "categories": [

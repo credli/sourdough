@@ -41,6 +41,59 @@ collections:
                   },
                 ],
             }
+          - {
+              name: categories,
+              label: 'Displayed Categories',
+              label_singular: Category,
+              widget: list,
+              fields:
+                [
+                  {
+                    label: Category,
+                    name: category,
+                    widget: relation,
+                    collection: category,
+                    search_fields: [name],
+                    display_fields: [name],
+                    value_field: slug,
+                  },
+                  {
+                    name: products,
+                    label: 'Displayed Products',
+                    label_singular: Product,
+                    widget: list,
+                    fields:
+                      [
+                        {
+                          label: Product,
+                          name: product,
+                          widget: relation,
+                          collection: product,
+                          search_fields: [name],
+                          display_fields: [name],
+                          value_field: slug,
+                        },
+                      ],
+                  },
+                ],
+            }
+          - {
+              name: featuredProducts,
+              label: 'Featured Products',
+              label_singular: Product,
+              widget: list,
+              fields:
+                [
+                  {
+                    label: Product,
+                    name: product,
+                    widget: relation,
+                    collection: product,
+                    search_fields: [name],
+                    value_field: slug,
+                  },
+                ],
+            }
   - name: blog
     label: Blog
     folder: src/pages/blog
@@ -242,7 +295,6 @@ collections:
     slug: '{{fields.slug}}'
     path: '{{slug}}'
     create: true
-    sortable_fields: ['menuOrder']
     media_folder: 'images'
     public_folder: 'images/'
     fields:
@@ -250,7 +302,6 @@ collections:
       - { name: slug, label: Slug }
       - { name: name, label: Name }
       - { name: description, label: Description, widget: text }
-      - { name: menuOrder, label: 'Menu Order', widget: number }
       - { name: image, label: Image, widget: image }
 
   - name: product
@@ -345,12 +396,6 @@ collections:
           display_fields: ['name'],
           value_field: '{{slug}}',
           multiple: true,
-          required: false,
-        }
-      - {
-          name: menuOrder,
-          label: 'Menu Order',
-          widget: number,
           required: false,
         }
       - { name: createdAt, widget: datetime, required: false }

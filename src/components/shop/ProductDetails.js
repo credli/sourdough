@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Row, Col, Spinner } from 'react-bootstrap';
 
 // import ProductPrice from '../odoo/ProductPrice';
@@ -72,7 +72,7 @@ function ProductDetails({ product }) {
             <Col>
               <div className={imageWrapper}>
                 <GatsbyImage
-                  image={selectedVariant.image.childImageSharp.gatsbyImageData}
+                  image={getImage(selectedVariant.image)}
                   alt={selectedVariant.name}
                 />
                 <ProductAvailability
@@ -93,10 +93,7 @@ function ProductDetails({ product }) {
                       p.slug === selectedVariant.slug ? selected : ''
                     }`}
                   >
-                    <GatsbyImage
-                      image={p.image.childImageSharp.gatsbyImageData}
-                      alt={p.name}
-                    />
+                    <GatsbyImage image={getImage(p.image)} alt={p.name} />
                   </div>
                 </Col>
               ))}

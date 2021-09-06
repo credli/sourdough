@@ -28,9 +28,7 @@ exports.createPages = async ({
           }
         }
       }
-      categories: allCategoriesJson(
-        sort: { fields: [menuOrder], order: [ASC] }
-      ) {
+      categories: allCategoriesJson {
         edges {
           node {
             slug
@@ -130,6 +128,18 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   const typeDefs = `
     # Hint: @link "by" should be the primary key of the linked entity (ex. products),
     # "from" must be foreign key in current entity (ex. relatedProducts.product)
+
+    type SettingsJsonCategories implements Node {
+      categoryObject: CategoriesJson @link(by: "slug", from: "category")
+    }
+
+    type SettingsJsonCategoriesProducts implements Node {
+      productObject: ProductsJson @link(by: "slug", from: "product")
+    }
+
+    type SettingsJsonFeaturedProducts implements Node {
+      productObject: ProductsJson @link(by: "slug", from: "product")
+    }
 
     type ProductsJson implements Node {
       categoriesArray: [CategoriesJson] @link(by: "slug", from: "categories")

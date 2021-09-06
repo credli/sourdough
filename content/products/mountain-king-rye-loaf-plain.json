@@ -13,7 +13,7 @@
     },
     {
       "name": "Mountain King Rye Loaf - Seeded",
-      "slug": "moutain-king-rye-loaf-seeded",
+      "slug": "mountain-king-rye-loaf-seeded",
       "description": "100% Dark Rye with toasted seeds, cold fermented for 48 hours",
       "outOfStock": false,
       "image": "images/mountain-king-rye-seeded.jpg"
@@ -27,6 +27,28 @@
     }
   ],
   "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Fermentation",
+      "details": "60 hours"
+    },
+    {
+      "title": "Ingredients",
+      "details": "Organic dark rye flour, white flour, malt, salt, and young sourdough starter. Optional: lemon zest and lemon juice."
+    },
+    {
+      "title": "Allergy Info",
+      "details": "This product contains wheat, gluten, and nuts."
+    },
+    {
+      "title": "Shelf-life and Storage",
+      "details": "Enjoy hot or toasted | Keep at room temperature for up to 4 days | For long-term storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from freezer, allow bread to thaw at room temp. and then refresh in 180c oven, or toast it right away"
+    },
+    {
+      "title": "Delivery",
+      "details": "Sourdough bakery delivers Monday through Saturday of each week upon pre-order with ETA of 2 working days."
+    }
+  ],
   "gallery": [],
   "createdAt": "2021-09-04T21:45:51.236Z",
   "image": "images/mountain-king-rye-loaf-plain.jpg",

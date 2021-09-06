@@ -27,6 +27,28 @@
     }
   ],
   "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Fermentation",
+      "details": "24 hours"
+    },
+    {
+      "title": "Ingredients",
+      "details": "Organic white flour, butter, milk, brown sugar, salt, free-range eggs, and young sourdough starter. Filling options are made of Bavarian cream and Italian 60% chocolate-hazelnut spread"
+    },
+    {
+      "title": "Allergy Info",
+      "details": "This product contains wheat, gluten, milk, and eggs. It may also contain traces of nuts."
+    },
+    {
+      "title": "Shelf-life and Storage",
+      "details": "Enjoy at cold or at room temperature | Keep at room temperature for up to 2 days | For long-term storage, place in zip-lock bags and keep in the freezer for up to 3 months | Pastries should not be refrigerated | To serve from freezer, allow pastry to thaw at room temp."
+    },
+    {
+      "title": "Delivery",
+      "details": "Sourdough bakery delivers Monday through Saturday of each week upon pre-order with ETA of 2 working days."
+    }
+  ],
   "gallery": [
     {
       "image": "images/img_2343.jpeg",

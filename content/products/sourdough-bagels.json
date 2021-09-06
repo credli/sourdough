@@ -1,8 +1,8 @@
 {
   "templateKey": "product",
   "leadTime": 24,
-  "name": "Sourdough Bagels",
-  "slug": "sourdough-bagels",
+  "name": "Sourdough Bagel",
+  "slug": "sourdough-bagel",
   "variants": [
     {
       "slug": "sourdough-bagel-plain",
@@ -12,19 +12,19 @@
     },
     {
       "slug": "sourdough-bagel-poppy-seeds",
-      "description": "dummy content",
+      "description": "Poppy seed coated chewy bagels, fermented for 48 hours",
       "name": "Sourdough Bagel - Poppy Seeds",
       "image": "images/sourdough-bagel-poppy-seeds.jpg",
-      "outOfStock": true
+      "outOfStock": false
     },
     {
       "name": "Sourdough Bagels - Pack of 4",
-      "slug": "sourdough-bagel-pack-of-4",
+      "description": "Saver pack, get 4 bagels for the price of 3.",
+      "slug": "sourdough-bagels-pack-of-4",
       "image": "images/bagel-pack-of-4.jpg",
       "outOfStock": false
     }
   ],
-  "menuOrder": 2,
   "outOfStock": false,
   "gallery": [
     {
@@ -35,15 +35,19 @@
   "attributes": [
     {
       "title": "Fermentation",
-      "details": "18 hours"
+      "details": "48 hours"
     },
     {
       "title": "Ingredients",
-      "details": "Organic bread flour, malt, salt and young rye starter"
+      "details": "Organic bread flour, malt, salt and young rye starter. Optional: Poppy seeds."
+    },
+    {
+      "title": "Allergy Info",
+      "details": "This product contains wheat and gluten. It may also contain traces of nuts."
     },
     {
       "title": "Storage",
-      "details": "Enjoy hot or toasted | Keep at room temperature for up to 2 days | For longer storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from frozen, allow bread to thaw at room temp. and then refresh in 180c oven"
+      "details": "Enjoy hot or toasted | Keep at room temperature for up to 2 days | For longer storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from freezer, allow bread to thaw at room temp. and then refresh in 180c oven"
     },
     {
       "title": "Delivery",

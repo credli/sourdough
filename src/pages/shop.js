@@ -1,5 +1,4 @@
-import React, { useMemo } from 'react';
-import _ from 'lodash';
+import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { Col, Row, Container, Breadcrumb } from 'react-bootstrap';
 
@@ -11,23 +10,17 @@ import ProductGrid from '../components/shop/ProductGrid';
 function ShopPage({ location }) {
   const data = useStaticQuery(graphql`
     {
-      categories: allCategoriesJson(
-        sort: { fields: [menuOrder], order: [ASC] }
-      ) {
-        edges {
-          node {
+      settings: settingsJson {
+        categories {
+          slug: category
+          categoryObject {
             slug
             name
             count
-            menuOrder
           }
-        }
-      }
-      groupedProducts: allProductsJson {
-        group(field: categoriesArray___name) {
-          fieldValue
-          edges {
-            node {
+          products {
+            slug: product
+            productObject {
               slug
               name
               image {
@@ -46,16 +39,15 @@ function ShopPage({ location }) {
     }
   `);
 
-  const groupedProducts = useMemo(() => {
-    const grouped = data.groupedProducts.group.map((g) => {
-      const matchedCategory = data.categories.edges.find(
-        (e) => e.node.name === g.fieldValue
-      );
-      g.category = matchedCategory.node;
-      return g;
+  const categories = data.settings.categories
+    .filter((c) => c.products && c.products.length > 0) // skip empty categoriess
+    .map((category) => {
+      const { categoryObject, products } = category;
+      return {
+        ...categoryObject,
+        products: products.map((p) => p.productObject),
+      };
     });
-    return _.sortBy(grouped, 'category.menuOrder');
-  }, [data.categories, data.groupedProducts]);
 
   return (
     <Layout>
@@ -89,16 +81,14 @@ function ShopPage({ location }) {
         </Row>
         <Row>
           <Col lg={3}>
-            <CategorySelector
-              categories={data.categories.edges.map((e) => e.node)}
-            />
+            <CategorySelector categories={categories} />
           </Col>
           <Col lg={9}>
-            {groupedProducts.map((grp, grpIdx) => (
+            {categories.map((category, categoryIdx) => (
               <ProductGrid
-                key={grpIdx}
-                category={grp.category}
-                products={grp.edges.map((e) => e.node)}
+                key={categoryIdx}
+                category={category}
+                products={category.products}
               />
             ))}
           </Col>

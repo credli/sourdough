@@ -1,10 +1,28 @@
 {
   "templateKey": "product",
   "leadTime": 24,
-  "name": "Oatmeal raisins Cookie",
+  "name": "Oatmeal Raisins Cookie",
   "slug": "oatmeal-raisins-cookie",
   "variants": [],
   "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Ingredients",
+      "details": "Organic oatmeal, organic rolled oats, butter, brown sugar, salt, free-range eggs, and raisins."
+    },
+    {
+      "title": "Allergy Info",
+      "details": "This product contains eggs. It may also contain traces of gluten and nuts."
+    },
+    {
+      "title": "Shelf-life and Storage",
+      "details": "Enjoy cold or at room temperature | Keep at room temperature in a sealed jar for up to 1 week | For long-term storage, place in zip-lock bags and keep in the freezer for up to 3 months | Cookies must not be refrigerated | To serve from freezer, allow cookies to thaw at room temp. and then refresh in 180c oven, or toast it right away"
+    },
+    {
+      "title": "Delivery",
+      "details": "Sourdough bakery delivers Monday through Saturday of each week upon pre-order with ETA of 2 working days."
+    }
+  ],
   "createdAt": "2021-09-05T19:03:03.263Z",
   "image": "images/oatmeal-raisin-cookie.jpg",
   "categories": [

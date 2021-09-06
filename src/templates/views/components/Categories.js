@@ -11,39 +11,33 @@ import {
   categoryTitleWrapper,
 } from './Categories.module.scss';
 
-function Categories({ categories }) {
-  return (
-    <Row className='g-0'>
-      {categories.edges
-        .map((e) => e.node)
-        .map((category, index) => {
-          const pluginImage = getImage(
-            category.image.childImageSharp.gatsbyImageData
-          );
+const Categories = ({ categories }) => (
+  <Row className='g-0'>
+    {categories.map((category, index) => {
+      const pluginImage = getImage(category.image);
 
-          return (
-            <Col key={index} lg={3}>
-              <Link to={`/shop/${category.slug}`}>
-                <div className={categoryBox}>
-                  <BgImage
-                    className={categoryImage}
-                    image={pluginImage}
-                    alt={category.altText}
-                  >
-                    <div
-                      className={`${categoryTitleWrapper} d-flex justify-content-center align-items-center`}
-                    >
-                      <h3 className='display-5'>{category.name}</h3>
-                    </div>
-                  </BgImage>
+      return (
+        <Col key={index} lg={3}>
+          <Link to={`/shop/${category.slug}`}>
+            <div className={categoryBox}>
+              <BgImage
+                className={categoryImage}
+                image={pluginImage}
+                alt={category.altText}
+              >
+                <div
+                  className={`${categoryTitleWrapper} d-flex justify-content-center align-items-center`}
+                >
+                  <h3 className='display-5'>{category.name}</h3>
                 </div>
-              </Link>
-            </Col>
-          );
-        })}
-    </Row>
-  );
-}
+              </BgImage>
+            </div>
+          </Link>
+        </Col>
+      );
+    })}
+  </Row>
+);
 
 Categories.propTypes = {
   categories: PropTypes.shape({

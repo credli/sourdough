@@ -15,7 +15,7 @@ function PreviewCompatibleImage({
 }) {
   if (!!image && typeof image === 'object') {
     if (background) {
-      const pluginImage = getImage(image.childImageSharp.gatsbyImageData);
+      const pluginImage = getImage(image);
       const backgroundFluidImageStack = [
         pluginImage,
         `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1))`,
@@ -34,7 +34,7 @@ function PreviewCompatibleImage({
         <GatsbyImage
           className={className}
           style={style}
-          image={image.childImageSharp.gatsbyImageData}
+          image={getImage(image)}
           alt={alt}
           {...rest}
         />

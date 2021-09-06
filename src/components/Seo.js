@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import { getImage } from 'gatsby-plugin-image';
 import { useLocation } from '@reach/router';
 
 function Seo({ title, description, author, image }) {
@@ -31,10 +32,7 @@ function Seo({ title, description, author, image }) {
   description = description || defaults.description;
   author = author || defaults.author;
   image = image?.childImageSharp?.gatsbyImageData?.images?.fallback?.src
-    ? new URL(
-        image.childImageSharp.gatsbyImageData.images.fallback.src,
-        defaults.siteUrl
-      )
+    ? new URL(getImage(image).images.fallback.src, defaults.siteUrl)
     : false;
   const url = new URL(pathname, defaults.siteUrl);
 

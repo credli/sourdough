@@ -4,6 +4,28 @@
   "name": "Brioche Roll",
   "slug": "brioche-roll",
   "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Fermentation",
+      "details": "24 hours"
+    },
+    {
+      "title": "Ingredients",
+      "details": "Organic white flour, cultured butter, milk, brown sugar, salt, free-range eggs, and young sourdough starter"
+    },
+    {
+      "title": "Allergy Info",
+      "details": "This product contains wheat, gluten, milk, and eggs. It may also contain traces of nuts."
+    },
+    {
+      "title": "Shelf-life and Storage",
+      "details": "Enjoy hot or toasted | Keep at room temperature for up to 2 days | For long-term storage, place in zip-lock bags and keep in the freezer for up to 3 months | Pastries should not be refrigerated | To serve from freezer, allow pastry to thaw at room temp. and then refresh in 180c oven, or toast it right away"
+    },
+    {
+      "title": "Delivery",
+      "details": "Sourdough bakery delivers Monday through Saturday of each week upon pre-order with ETA of 2 working days."
+    }
+  ],
   "createdAt": "2021-09-05T17:54:07.683Z",
   "image": "images/brioche-roll.jpg",
   "categories": [

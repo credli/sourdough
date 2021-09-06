@@ -3,7 +3,6 @@
   "leadTime": 24,
   "name": "Wonder Loaf",
   "slug": "wonder-loaf-plain",
-  "menuOrder": 1,
   "outOfStock": false,
   "attributes": [
     {
@@ -12,15 +11,19 @@
     },
     {
       "title": "Ingredients",
-      "details": "Organic whole-wheat flour, organic while flour, salt and young sourdough starter"
+      "details": "Organic whole-wheat flour, Kamut flour, organic white flour, salt, and young sourdough starter"
     },
     {
-      "title": "Storage",
-      "details": "Enjoy hot or toasted | Keep at room temperature for up to 4 days | For longer storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from frozen, allow bread to thaw at room temp. and then refresh in 180c oven"
+      "title": "Allergy Info",
+      "details": "This product contains wheat and gluten and may also contain traces of nuts."
+    },
+    {
+      "title": "Shelf-life and Storage",
+      "details": "Enjoy hot or toasted | Keep at room temperature for up to 4 days | For long-term storage, place in zip-lock bags and keep in the freezer for up to 3 months | Bread should not be refrigerated | To serve from freezer, allow bread to thaw at room temp. and then refresh in 180c oven, or toast it right away"
     },
     {
       "title": "Delivery",
-      "details": "Sourdough bakery delivery Monday through Saturday of each week upon pre-order"
+      "details": "Sourdough bakery delivers Monday through Saturday of each week upon pre-order with ETA of 2 working days."
     }
   ],
   "createdAt": "2021-08-31T21:15:18.659Z",
@@ -28,7 +31,7 @@
   "categories": [
     "bread"
   ],
-  "description": "50% Whole-wheat, 50% organic white flour, fermented for 48 hours",
+  "description": "A blend of Whole-wheat, Kamut, and organic white flour. Fermented for 48 hours",
   "options": [
     "slicing"
   ]
