@@ -1,15 +1,21 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import { Alert } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 
 import NavBar from './NavBar';
 import Footer from './Footer';
 import CartDrawer from './shop/CartDrawer';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 import { contentWrapper, main, header, footer } from './Layout.module.scss';
 
 export default function Layout({ children }) {
+  const [announcementVisible, setAnnouncementVisible] = useLocalStorage(
+    'announcement',
+    true
+  );
+
   const data = useStaticQuery(graphql`
     {
       settingsJson {
@@ -34,7 +40,7 @@ export default function Layout({ children }) {
       <header className={header}>
         <NavBar />
       </header>
-      {data.settingsJson.announcement.visible && (
+      {announcementVisible && data.settingsJson.announcement.visible && (
         <Alert
           className='text-center mb-0'
           variant={data.settingsJson.announcement.theme}
@@ -44,6 +50,13 @@ export default function Layout({ children }) {
               __html: data.settingsJson.announcement.message,
             }}
           />
+          <Button
+            className='ms-2'
+            size='sm'
+            onClick={() => setAnnouncementVisible(false)}
+          >
+            Dismiss
+          </Button>
         </Alert>
       )}
       <main className={main}>{children}</main>

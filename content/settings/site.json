@@ -1,7 +1,7 @@
 {
   "announcement": {
-    "theme": "primary",
-    "message": "Free delivery for orders above LBP 320,000. Estimated delivery time is 2 days due to nationwide electricity and fuel outages. Check our <a href='/outages'>notice</a> for more info.",
+    "theme": "info",
+    "message": "Free delivery for orders above <strong>LBP 320,000</strong>. Estimated delivery time is 2 days due to nationwide electricity and fuel outages. Check our <a href='/outages'>notice post</a> for more info.",
     "visible": true
   },
   "categories": [

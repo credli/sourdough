@@ -37,6 +37,15 @@ const ProductDetailsPage = ({ data, location }) => {
                 <Breadcrumb.Item
                   linkAs={Link}
                   linkProps={{
+                    to: `/`,
+                    className: 'text-reset text-decoration-none',
+                  }}
+                >
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item
+                  linkAs={Link}
+                  linkProps={{
                     to: `/shop`,
                     className: 'text-reset text-decoration-none',
                   }}

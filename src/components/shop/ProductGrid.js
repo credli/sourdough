@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import ProductItem from './ProductItem';
 
-const ProductGrid = ({ category, products }) => (
+const ProductGrid = ({ category, products, showHeader = true }) => (
   <Row className='mb-5'>
-    {category && <h2 className='display-5 mb-4'>{category.name}</h2>}
+    {showHeader && category && (
+      <h2 className='display-5 mb-4'>{category.name}</h2>
+    )}
     {products.map((product, idx) => {
       return (
         <ProductItem
@@ -23,6 +25,8 @@ const ProductGrid = ({ category, products }) => (
 );
 
 ProductGrid.propTypes = {
+  category: PropTypes.object.isRequired,
+  showHeader: PropTypes.bool,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       slug: PropTypes.string.isRequired,

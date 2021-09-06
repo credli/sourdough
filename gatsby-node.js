@@ -33,6 +33,7 @@ exports.createPages = async ({
           node {
             slug
             name
+            count
           }
         }
       }
@@ -98,17 +99,16 @@ exports.createPages = async ({
   // });
 
   // shop page (categories)
-  result.data.categories.edges
-    .filter((edge) => edge.node.count > 0)
-    .forEach((edge) => {
-      createPage({
-        path: `/shop/${edge.node.slug}`,
-        component: path.resolve(`src/templates/shop-page.js`),
-        context: {
-          slug: edge.node.slug,
-        },
-      });
+  result.data.categories.edges.forEach((edge) => {
+    if (edge.node.count === 0) return;
+    createPage({
+      path: `/shop/${edge.node.slug}`,
+      component: path.resolve(`src/templates/shop-page.js`),
+      context: {
+        slug: edge.node.slug,
+      },
     });
+  });
 
   // product details page
   result.data.products.edges.forEach((edge) => {

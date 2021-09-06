@@ -35,7 +35,7 @@ const Totals = ({ cart, onCheckout }) => {
 
 const CartDrawer = () => {
   const { getProduct } = useFetchedProduct();
-  const { loading, cart, updateCartQty, drawerOpen, closeDrawer } =
+  const { loading, cart, updateCartQty, drawerOpen, closeDrawer, clearCart } =
     useContext(CartContext);
 
   const handleQtyChange = (e, newValue, item) => {
@@ -43,6 +43,34 @@ const CartDrawer = () => {
   };
 
   const handleCheckout = () => {};
+
+  const renderItemsCount = () => {
+    const count =
+      (cart &&
+        cart.items.length > 0 &&
+        cart.items.map((i) => i.qty).reduce((x, y) => x + y)) ||
+      0;
+    return (
+      <>
+        {cart && cart.items.length > 0 && (
+          <span className='text-muted fw-light fs-5 ms-3'>
+            {count} {`Item${count > 1 ? 's' : ''}`}{' '}
+            <a
+              className='text-reset fs-6 ms-1'
+              href='#'
+              onClick={(e) => {
+                e.preventDefault();
+                clearCart();
+              }}
+              role='button'
+            >
+              Clear
+            </a>
+          </span>
+        )}
+      </>
+    );
+  };
 
   return (
     <Offcanvas
@@ -53,7 +81,10 @@ const CartDrawer = () => {
       placement='end'
     >
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title className='fs-2'>My Basket</Offcanvas.Title>
+        <Offcanvas.Title className='fs-2 d-flex align-items-center'>
+          My Basket
+          {renderItemsCount()}
+        </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body className='p-0 overflow-hidden d-flex flex-column justify-content-between'>
         <hr className='m-0' />

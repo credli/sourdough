@@ -31,6 +31,7 @@ export const CartProvider = ({ children }) => {
   const closeDrawer = () => setDrawerOpen(false);
 
   const updateCartDetails = async (note, deliveryDate, pickupDate) => {
+    setLoading(true);
     const params = new URLSearchParams();
     if (note) {
       params.append('note', note);
@@ -49,7 +50,23 @@ export const CartProvider = ({ children }) => {
     try {
       const result = await axios.post('/api/shop/cart', params, config);
       setCart(result.data);
-    } catch (error) {}
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearCart = async () => {
+    try {
+      setLoading(true);
+      await axios.delete('/api/shop/cart');
+      setCart(null);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const updateCartQty = async (product, qty, note, moveUp = true) => {
@@ -87,6 +104,7 @@ export const CartProvider = ({ children }) => {
         cart,
         updateCartQty,
         updateCartDetails,
+        clearCart,
         drawerOpen,
         openDrawer,
         closeDrawer,

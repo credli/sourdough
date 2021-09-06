@@ -1,6 +1,14 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { Col, Row, Container, Breadcrumb } from 'react-bootstrap';
+import {
+  Col,
+  Row,
+  Container,
+  Breadcrumb,
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+} from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
@@ -80,19 +88,31 @@ function ShopPage({ location }) {
           </Col>
         </Row>
         <Row>
-          <Col lg={3}>
-            <CategorySelector categories={categories} />
-          </Col>
-          <Col lg={9}>
-            {categories.map((category, categoryIdx) => (
-              <ProductGrid
-                key={categoryIdx}
-                category={category}
-                products={category.products}
-              />
-            ))}
+          <Col>
+            <ButtonToolbar className='py-4'>
+              <ButtonGroup size='lg' className='mx-auto'>
+                {categories.map((c, idx) => (
+                  <Button
+                    key={idx}
+                    as={Link}
+                    to={`/shop/${c.slug}`}
+                    className='px-5'
+                    variant='outline-primary'
+                  >
+                    <span className='text-dark text-uppercase'>{c.name}</span>
+                  </Button>
+                ))}
+              </ButtonGroup>
+            </ButtonToolbar>
           </Col>
         </Row>
+        {categories.map((category, categoryIdx) => (
+          <ProductGrid
+            key={categoryIdx}
+            category={category}
+            products={category.products}
+          />
+        ))}
       </Container>
     </Layout>
   );

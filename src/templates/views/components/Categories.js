@@ -40,17 +40,15 @@ const Categories = ({ categories }) => (
 );
 
 Categories.propTypes = {
-  categories: PropTypes.shape({
-    edges: PropTypes.arrayOf(
-      PropTypes.shape({
-        node: PropTypes.shape({
-          slug: PropTypes.string,
-          name: PropTypes.string,
-          image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-        }),
-      })
-    ),
-  }),
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        slug: PropTypes.string,
+        name: PropTypes.string,
+        image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      }),
+    })
+  ),
 };
 
 export default Categories;

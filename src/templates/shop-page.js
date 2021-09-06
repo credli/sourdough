@@ -1,6 +1,14 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { Col, Row, Container, Breadcrumb } from 'react-bootstrap';
+import {
+  Col,
+  Row,
+  Container,
+  Breadcrumb,
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+} from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
@@ -42,22 +50,52 @@ function ShopPage({ data, pageContext: { slug } }) {
                   to: '/shop',
                 }}
                 linkAs={Link}
-                active
               >
                 Shop
               </Breadcrumb.Item>
+              <Breadcrumb.Item
+                linkProps={{
+                  className: 'text-reset text-decoration-none',
+                  to: `/shop/${currentCategory.slug}`,
+                }}
+                linkAs={Link}
+                active
+              >
+                {currentCategory.name}
+              </Breadcrumb.Item>
             </Breadcrumb>
-            <hr />
+            <hr className='mb-0' />
           </Col>
         </Row>
         <Row>
-          <Col lg={3}>
-            <CategorySelector categories={categories} selectedCategory={slug} />
-          </Col>
-          <Col lg={9}>
-            <ProductGrid category={currentCategory} products={products} />
+          <Col>
+            <ButtonToolbar className='py-4'>
+              <ButtonGroup size='lg' className='mx-auto'>
+                {categories.map((c, idx) => {
+                  const isCurrentCategory = c === currentCategory;
+                  return (
+                    <Button
+                      key={idx}
+                      as={Link}
+                      to={`/shop/${c.slug}`}
+                      className='px-5'
+                      variant={
+                        isCurrentCategory ? 'primary' : 'outline-primary'
+                      }
+                    >
+                      <span className='text-dark text-uppercase'>{c.name}</span>
+                    </Button>
+                  );
+                })}
+              </ButtonGroup>
+            </ButtonToolbar>
           </Col>
         </Row>
+        <ProductGrid
+          category={currentCategory}
+          products={products}
+          showHeader={false}
+        />
       </Container>
     </Layout>
   );
