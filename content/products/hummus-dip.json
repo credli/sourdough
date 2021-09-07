@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Hummus Dip ",
+  "slug": "hummus-dip",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-07T10:26:10.775Z",
+  "image": "images/hummus-dip.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "Homemade Hummus dip"
+}
