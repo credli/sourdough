@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Awarma de Canard",
+  "slug": "awarma-de-canard",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-07T10:37:27.025Z",
+  "image": "images/awarma-de-canard.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "Homemade Awarma de Canard"
+}
