@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Lame",
+  "slug": "lame",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T17:25:20.510Z",
+  "image": "images/lame.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
