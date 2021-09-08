@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Olivares - 250ml",
+  "slug": "olivares-250ml",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T15:27:07.397Z",
+  "image": "images/olivares-250ml.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "Extra Virgin Olive Oil cold-pressed from Olives (No additives, no preservatives)"
+}
