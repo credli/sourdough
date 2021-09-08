@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Colombian Supremo - 200g",
+  "slug": "colombian-coffee-beans",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T17:26:25.167Z",
+  "image": "images/colombian-coffee-beans.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
