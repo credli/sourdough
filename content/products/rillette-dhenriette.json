@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Rillette d'Henriette ",
+  "slug": "rillette-dhenriette",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-07T10:40:34.239Z",
+  "image": "images/rillettes-henriette.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "???"
+}
