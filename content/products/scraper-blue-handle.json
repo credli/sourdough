@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Scraper Blue Handle",
+  "slug": "scraper-blue-handle",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T16:56:39.876Z",
+  "image": "images/scraper-blue-handle.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
