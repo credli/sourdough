@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "French press pot",
+  "slug": "french-press-pot",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T16:59:36.223Z",
+  "image": "images/french-press-pot.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
