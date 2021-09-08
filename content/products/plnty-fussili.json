@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Plnty - Fussili ",
+  "slug": "plnty-fussili",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T15:19:50.814Z",
+  "image": "images/plnty-fussili.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "Fresh pasta made from free-range eggs and flour\n\nDoes not need refrigeration \n\nLast 8 months \n\nTakes only a few minutes to cook"
+}
