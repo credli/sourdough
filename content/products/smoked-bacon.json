@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Smoked Bacon ",
+  "slug": "smoked-bacon",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T15:30:51.088Z",
+  "image": "images/smoked-bacon.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "???100g"
+}
