@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Rillettes de Canard",
+  "slug": "rillettes-de-canard-",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T15:07:22.657Z",
+  "image": "images/rillettes-de-canard.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "???"
+}
