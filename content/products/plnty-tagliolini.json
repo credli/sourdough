@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Plnty - Tagliolini ",
+  "slug": "plnty-tagliolini",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T15:25:41.528Z",
+  "image": "images/plnty-tagliolini.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "Fresh pasta made from free-range eggs & Flour \n\nDoes not need refrigeration\n\nLast 8 months \n\nTakes a few minutes to cook"
+}
