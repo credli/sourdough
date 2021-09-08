@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Proofing basket - linen",
+  "slug": "proofing-basket-linen",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T16:58:33.023Z",
+  "image": "images/proofing-basket-linen.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
