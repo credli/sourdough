@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Bowl Scraper",
+  "slug": "bowl-scraper",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-08T15:32:03.756Z",
+  "image": "images/bowl-scraper.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
