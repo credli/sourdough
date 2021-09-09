@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Keepers Figs",
+  "slug": "keepers-loaf-figs",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-09T16:00:16.150Z",
+  "image": "images/keepers-figs.jpg",
+  "categories": [
+    "bread"
+  ],
+  "description": "??"
+}
