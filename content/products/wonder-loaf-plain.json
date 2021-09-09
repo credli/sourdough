@@ -3,6 +3,15 @@
   "leadTime": 24,
   "name": "Wonder Loaf",
   "slug": "wonder-loaf-plain",
+  "variants": [
+    {
+      "outOfStock": false,
+      "name": "Wonder Seeded",
+      "slug": "wonder-loaf-seeded",
+      "description": "???",
+      "image": "images/wonder-seeded.jpg"
+    }
+  ],
   "outOfStock": false,
   "attributes": [
     {
