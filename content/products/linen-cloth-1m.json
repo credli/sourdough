@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Linen cloth (1m)",
+  "slug": "linen-cloth-1m",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-09T15:52:19.495Z",
+  "image": "images/linen-cloth-1m.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
