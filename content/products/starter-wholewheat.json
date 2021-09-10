@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Starter Wholewheat",
+  "slug": "starter-wholewheat",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-10T15:48:32.078Z",
+  "image": "images/starter-whole-wheat.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
