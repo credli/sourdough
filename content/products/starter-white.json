@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Starter White",
+  "slug": "starter-white",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-10T15:46:16.221Z",
+  "image": "images/starter-white.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
