@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Organic Rye Flour - 1kg",
+  "slug": "organic-rye-flour-1kg",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-12T11:58:22.340Z",
+  "image": "images/rye-flour.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
