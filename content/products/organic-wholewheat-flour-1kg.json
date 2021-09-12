@@ -1,0 +1,14 @@
+{
+  "templateKey": "product",
+  "leadTime": 24,
+  "name": "Organic Wholewheat Flour - 1kg",
+  "slug": "organic-wholewheat-flour-1kg",
+  "variants": [],
+  "outOfStock": false,
+  "createdAt": "2021-09-12T11:45:34.722Z",
+  "image": "images/whole-wheat-flour.jpg",
+  "categories": [
+    "merchandise"
+  ],
+  "description": "??"
+}
