@@ -5,10 +5,20 @@
   "slug": "maison-alfred-sauce-3",
   "variants": [],
   "outOfStock": false,
+  "attributes": [
+    {
+      "title": "Weight",
+      "details": "250ml"
+    },
+    {
+      "title": "Shelf-life & Storage",
+      "details": "Shelf life: 12 months. Keep refrigerated once open"
+    }
+  ],
   "createdAt": "2021-09-08T15:18:50.306Z",
   "image": "images/maison-alfred-sauce-3.jpg",
   "categories": [
     "merchandise"
   ],
-  "description": "Made from fresh ingredients. \n\nUse it on any dish or plate!\\\nCold: In salads, pasta, with seafood, on toast...\\\nHot: In rice, chicken, potatoes, sauté dishes...\\\nAs a marinade: for chicken, turkey, white fish, vegetables\\\nsterilized product shelf life: one year \n\nweight: 225g \n\nkeep refrigerate once open"
+  "description": "An exclusive homemade sauce, with grilled red pepper, soya and mustard, for a unique sweet and sour taste.\n\nUSE IT ON ANY DISH OR PLATE!\n\n**Cold:** In salads, pasta, with seafood, on toast.\n\n**Hot:** In rice, chicken, potatoes, sautéd dishes.\n\n**As a marinade:** For chicken, turkey, white fish, vegetables."
 }
